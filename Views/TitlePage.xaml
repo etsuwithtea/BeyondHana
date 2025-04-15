@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.TitlePage"
+             Title="TitlePage">
+    <AbsoluteLayout Margin="0" Padding="0" >
+        <Image Source="flowerfield.png" Aspect="Fill"/>
+        <Label Text="Beyond"
+              TextColor="#393939"
+              FontFamily="ItimRegular"
+              FontSize="64"
+              AbsoluteLayout.LayoutBounds="0.30, 0.43"
+              AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Label.Shadow>
+                <Shadow Brush="#000000"
+                       Offset="0,4"
+                       Radius="0.2"
+                       Opacity="0.25"/>
+            </Label.Shadow>
+        </Label>
+        <Label Text="Hana"
+              TextColor="#FF7C87"
+              FontFamily="CaveatRegular"
+              FontSize="64"
+              AbsoluteLayout.LayoutBounds="0.29, 0.57"
+              AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Label.Shadow>
+                <Shadow Brush="#000000"
+                       Offset="0,4"
+                       Radius="0.2"
+                       Opacity="0.25"/>
+            </Label.Shadow>
+        </Label>
+        <Label Text="Press Here To Start "
+              TextColor="#000000"
+              FontFamily="CaveatRegular"
+              FontSize="20"
+              AbsoluteLayout.LayoutBounds="0.29, 0.65"
+              AbsoluteLayout.LayoutFlags="PositionProportional"
+              CharacterSpacing="3">
+            <Label.Shadow>
+                <Shadow Brush="#000000"
+                       Offset="0,6"
+                       Radius="3"
+                       Opacity="0.97"/>
+            </Label.Shadow>
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PressStartLabel_Tapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </AbsoluteLayout>
+</ContentPage>
