@@ -25,7 +25,6 @@ public class MainActivity : MauiAppCompatActivity
         if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
         {
             Window.Attributes.LayoutInDisplayCutoutMode = LayoutInDisplayCutoutMode.ShortEdges;
-
         }
 
         //Make Application Not Shwoing Safe Area to Distrub Gameplay

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.HomePage"
+             Title="HomePage">
+    <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
+
+        <Grid x:Name="HomePageGrid" ColumnDefinitions="*,*,*,*,*">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition x:Name="Row1" Height="0.45*" />
+                <RowDefinition x:Name="Row2" Height="0.45*" />
+                <RowDefinition x:Name="Row3" Height="0.45*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Source="academic_corridor.png" Aspect="Fill" Grid.RowSpan="5" Grid.ColumnSpan="5"/>
+            <ImageButton Source="play2_button.png" x:Name="PlayButton" Grid.Row="1" Grid.Column="2" HeightRequest="45" WidthRequest="147" HorizontalOptions="Start" Clicked="PlayButton_Clicked" />
+            <ImageButton Source="setting2_button.png" x:Name="SettingButton" Grid.Row="2" Grid.Column="2"  HeightRequest="45" WidthRequest="158" HorizontalOptions="Start" Clicked="SettingButton_Clicked"/>
+            <ImageButton Source="exit2_button.png" x:Name="ExitButton" Grid.Row="3" Grid.Column="2"  HeightRequest="45" WidthRequest="90" HorizontalOptions="Start" Clicked="ExitButton_Clicked" />
+        </Grid>
+    </FlexLayout>
+</ContentPage>

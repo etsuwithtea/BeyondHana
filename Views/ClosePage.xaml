@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.ClosePage"
+             Title="ClosePage">
+    <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
+        <Grid RowDefinitions="0.8*,*,*,0.8*" ColumnDefinitions="*,*,*,*">
+            <Image Source="onclosebg.png" Aspect="Fill" Grid.RowSpan="4" Grid.ColumnSpan="4" />
+            <ImageButton Source="back_button.png" Grid.Row ="1" Grid.Column="2" HeightRequest="70" WidthRequest="144"  HorizontalOptions="Start"  VerticalOptions="End" Clicked="BackButton_Clicked"/>
+            <ImageButton Source="close_button.png" Grid.Row ="2" Grid.Column="2" HeightRequest="70" WidthRequest="181" HorizontalOptions="Start" Clicked="CloseButton_Clicked"/>
+        </Grid>
+    </FlexLayout>
+</ContentPage>

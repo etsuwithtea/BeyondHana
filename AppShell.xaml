@@ -6,10 +6,4 @@
     xmlns:local="clr-namespace:BeyondHana"
     Shell.FlyoutBehavior="Flyout"
     Title="BeyondHana">
-
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
 </Shell>
