@@ -23,10 +23,12 @@
             <Image Source="text_label.png" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" HeightRequest="40"/>
         
             <Image Source="textsize_label.png" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="30" HorizontalOptions="Start"/>
-            <ImageButton Source="checkbox_1.png" Grid.Row="6" Grid.Column="4" HeightRequest="30" />
-            <Image Source="small_label.png" Grid.Row="6" Grid.Column="5" HeightRequest="30" />
-            <ImageButton Source="checkbox_1.png" Grid.Row="6" Grid.Column="6" HeightRequest="30" />
-            <Image Source="normal_label.png" Grid.Row="6" Grid.Column="7" HeightRequest="30"/>
+
+            <ImageButton Source="checkbox_1.png" x:Name="SmallText_CheckBox" Grid.Row="6" Grid.Column="4" HeightRequest="30" Clicked="SmallTextCheckButton_Clicked"/>
+            <Image Source="small_label.png" Grid.Row="6" Grid.Column="5" HeightRequest="30" HorizontalOptions="Start"/>
+
+            <ImageButton Source="checkbox_1.png" x:Name="NormalText_CheckBox" Grid.Row="6" Grid.Column="6" HeightRequest="30" Clicked="NormalTextCheckButton_Clicked"/>
+            <Image Source="normal_label.png" Grid.Row="6" Grid.Column="7" HeightRequest="30" HorizontalOptions="Start"/>
 
             <ImageButton Source="back_label.png" Grid.Row="7" Grid.ColumnSpan="10" Clicked="BackButton_Clicked"/>
         </Grid>
