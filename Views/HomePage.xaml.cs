@@ -26,12 +26,12 @@ public partial class HomePage : ContentPage
         PlayButton.Source = "play1_button.png";
         PlayButton.WidthRequest = 230;
         PlayButton.HeightRequest = 65;
-        await Task.Delay(300);
+        await Task.Delay(150);
 
         // Change the grid size back
         PlayButton.Source = "play2_button.png";
         PlayButton.WidthRequest = 147;
-        PlayButton.HeightRequest = 45;
+        PlayButton.HeightRequest = 65;
         ChangeGridSizeBack();
     }
 
@@ -47,13 +47,15 @@ public partial class HomePage : ContentPage
         SettingButton.Source = "setting1_button.png";
         SettingButton.WidthRequest = 250;
         SettingButton.HeightRequest = 65;
-        await Task.Delay(300);
+        await Task.Delay(150);
 
+        // Navigate to the SettingPage
+        await Navigation.PushAsync(new Views.SettingPage());
 
         // Change the grid size back
         SettingButton.Source = "setting2_button.png";
         SettingButton.WidthRequest = 158;
-        SettingButton.HeightRequest = 45;
+        SettingButton.HeightRequest = 65;
         ChangeGridSizeBack();
     }
 
@@ -69,7 +71,7 @@ public partial class HomePage : ContentPage
         ExitButton.Source = "exit1_button.png";
         ExitButton.WidthRequest = 180;
         ExitButton.HeightRequest = 65;
-        await Task.Delay(300);
+        await Task.Delay(150);
 
         // Navigate to the ClosePage
         await Navigation.PushAsync(new Views.ClosePage());
@@ -77,21 +79,25 @@ public partial class HomePage : ContentPage
         // Change the grid size back
         ExitButton.Source = "exit2_button.png";
         ExitButton.WidthRequest = 90;
-        ExitButton.HeightRequest = 45;
+        ExitButton.HeightRequest = 65;
         ChangeGridSizeBack();
     }
+
     private async Task ChangeGridSizeRow1()
     {
         Row1.Height = new GridLength(0.7, GridUnitType.Star);
     }
+
     private async Task ChangeGridSizeRow2()
     {
         Row2.Height = new GridLength(0.7, GridUnitType.Star);
     }
+
     private async Task ChangeGridSizeRow3()
     {
         Row3.Height = new GridLength(0.7, GridUnitType.Star);
     }
+
     private async Task ChangeGridSizeBack()
     {
         Row1.Height = new GridLength(0.45, GridUnitType.Star);

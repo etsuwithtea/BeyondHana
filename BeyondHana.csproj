@@ -52,6 +52,7 @@
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Include="Resources\Images\BG\*" />
 		<MauiImage Include="Resources\Images\Button\*" />
+		<MauiImage Include="Resources\Images\LabelText\*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -72,9 +73,16 @@
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\SettingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TitlePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Images\LabelText\" />
 	</ItemGroup>
 
 </Project>

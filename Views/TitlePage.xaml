@@ -6,7 +6,7 @@
     <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
         <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*,*">
             <Image Source="flowerfield.png" Aspect="Fill" Grid.RowSpan="3" Grid.ColumnSpan="4"/>
-            <ImageButton Source="start_button.png" Grid.Row="1" Grid.Column="1" Clicked="StartButton_Clicked"/>
+            <ImageButton Source="start_button.png" x:Name="start_imagebutton" Grid.Row="1" Grid.Column="1" Clicked="StartButton_Clicked"/>
         </Grid>
     </FlexLayout>
 </ContentPage>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.SettingPage"
+             Title="SettingPage">
+    <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
+
+        <Grid RowDefinitions="*,*,*,0.8*,0.8*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*">
+            <Image Source="clubroom.png" Aspect="Fill" Grid.RowSpan="9" Grid.ColumnSpan="10"/>
+            <Image Source="setting_label.png" Grid.Row="1" Grid.ColumnSpan="10" HeightRequest="55"/>
+            <Image Source="volume_label.png" Grid.Row="2" Grid.Column="2"/>
+            
+            <Image Source="bgmusic_label.png" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="30" HorizontalOptions="Start" Margin="4"/>
+            <Border Padding="10" StrokeShape="RoundRectangle 10" BackgroundColor="Transparent"  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" HeightRequest="25">
+                <Slider x:Name="BackgroundMusicSlider" Maximum="100" Minimum="0" Value="100" ThumbColor="#F48B9A" MinimumTrackColor="Beige" MaximumTrackColor="#F5F5DC" HeightRequest="20"/>
+            </Border>
+            
+            <Image Source="soundeffect_label.png" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="30" HorizontalOptions="Start"/>
+            <Border Padding="10" StrokeShape="RoundRectangle 10" BackgroundColor="Transparent"  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="4" HeightRequest="25">
+                <Slider x:Name="SoundEffectSlider" Maximum="100" Minimum="0" Value="100" ThumbColor="#F48B9A" MinimumTrackColor="Beige" MaximumTrackColor="#F5F5DC" HeightRequest="20"/>
+            </Border>
+            
+            <Image Source="text_label.png" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" HeightRequest="40"/>
+        
+            <Image Source="textsize_label.png" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="30" HorizontalOptions="Start"/>
+            <ImageButton Source="checkbox_1.png" Grid.Row="6" Grid.Column="4" HeightRequest="30" />
+            <Image Source="small_label.png" Grid.Row="6" Grid.Column="5" HeightRequest="30" />
+            <ImageButton Source="checkbox_1.png" Grid.Row="6" Grid.Column="6" HeightRequest="30" />
+            <Image Source="normal_label.png" Grid.Row="6" Grid.Column="7" HeightRequest="30"/>
+
+            <ImageButton Source="back_label.png" Grid.Row="7" Grid.ColumnSpan="10" Clicked="BackButton_Clicked"/>
+        </Grid>
+    </FlexLayout>
+</ContentPage>
