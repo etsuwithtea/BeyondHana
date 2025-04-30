@@ -1,11 +1,16 @@
+using BeyondHana.ViewModels;
+
 namespace BeyondHana.Views;
 
 public partial class SettingPage : ContentPage
 {
-	public SettingPage()
+
+    public SettingPage()
 	{
 		InitializeComponent();
-	}
+        this.BindingContext = new ViewModels.UserSetting();
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -25,32 +30,24 @@ public partial class SettingPage : ContentPage
         await Navigation.PopAsync();
     }
 
-    int SmallTextCheck = 0; 
-    private async void SmallTextCheckButton_Clicked(object sender, EventArgs e)
+
+    private void SmallTextCheckButton_Clicked(object sender, EventArgs e)
     {
-        if (SmallTextCheck == 0) { 
-            SmallText_CheckBox.Source = "checkbox_2.png";
-            SmallTextCheck = 1;
-        }
-        else
-        {
-            SmallText_CheckBox.Source = "checkbox_1.png";
-            SmallTextCheck = 0;
-        }
+        var setting = (BindingContext as UserSetting)?.SelectedSetting;
+        if (setting == null) return;
+
+        setting.Textsize = 10;
+        SmallText_CheckBox.Source = "checkbox_2.png";
+        NormalText_CheckBox.Source = "checkbox_1.png";
     }
 
-    int NormalTextCheck = 0;
-    private async void NormalTextCheckButton_Clicked(object sender, EventArgs e)
+    private void NormalTextCheckButton_Clicked(object sender, EventArgs e)
     {
-        if (NormalTextCheck == 0)
-        {
-            NormalText_CheckBox.Source = "checkbox_2.png";
-            NormalTextCheck = 1;
-        }
-        else
-        {
-            NormalText_CheckBox.Source = "checkbox_1.png";
-            NormalTextCheck = 0;
-        }
+        var setting = (BindingContext as UserSetting)?.SelectedSetting;
+        if (setting == null) return;
+
+        setting.Textsize = 14;
+        SmallText_CheckBox.Source = "checkbox_1.png";
+        NormalText_CheckBox.Source = "checkbox_2.png";
     }
 }
