@@ -4,11 +4,10 @@ namespace BeyondHana.Views;
 
 public partial class SettingPage : ContentPage
 {
-
     public SettingPage()
 	{
 		InitializeComponent();
-        this.BindingContext = new ViewModels.UserSetting();
+        BindingContext = new CombinedVM(); // Set the BindingContext to CombinedVM
     }
 
     protected override void OnAppearing()
@@ -17,6 +16,25 @@ public partial class SettingPage : ContentPage
 
         // Hide the navigation bar
         NavigationPage.SetHasNavigationBar(this, false);
+
+        // Set the initial state of the checkboxes based on the selected setting
+        var combinedVM = BindingContext as CombinedVM;
+        if (combinedVM == null) return;
+
+        // Get the selected setting
+        var setting = combinedVM.UserSetting.SelectedSetting;
+        if (setting == null) return;
+
+        if (setting.Textsize == 10)
+        {
+            SmallText_CheckBox.Source = "checkbox_2.png";
+            NormalText_CheckBox.Source = "checkbox_1.png";
+        }
+        else if (setting.Textsize == 14)
+        {
+            SmallText_CheckBox.Source = "checkbox_1.png";
+            NormalText_CheckBox.Source = "checkbox_2.png";
+        }
     }
 
     private async void BackButton_Clicked(object sender, EventArgs e)
@@ -33,17 +51,28 @@ public partial class SettingPage : ContentPage
 
     private void SmallTextCheckButton_Clicked(object sender, EventArgs e)
     {
-        var setting = (BindingContext as UserSetting)?.SelectedSetting;
+        // Set the initial state of the checkboxes based on the selected setting
+        var combinedVM = BindingContext as CombinedVM;
+        if (combinedVM == null) return;
+
+        // Get the selected setting
+        var setting = combinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
 
         setting.Textsize = 10;
         SmallText_CheckBox.Source = "checkbox_2.png";
         NormalText_CheckBox.Source = "checkbox_1.png";
+   
     }
 
     private void NormalTextCheckButton_Clicked(object sender, EventArgs e)
     {
-        var setting = (BindingContext as UserSetting)?.SelectedSetting;
+        // Set the initial state of the checkboxes based on the selected setting
+        var combinedVM = BindingContext as CombinedVM;
+        if (combinedVM == null) return;
+
+        // Get the selected setting
+        var setting = combinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
 
         setting.Textsize = 14;

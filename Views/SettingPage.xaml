@@ -12,12 +12,12 @@
             
             <Image Source="bgmusic_label.png" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="30" HorizontalOptions="Start" Margin="4"/>
             <Border Padding="10" StrokeShape="RoundRectangle 10" BackgroundColor="Transparent"  Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" HeightRequest="25">
-                <Slider x:Name="BackgroundMusicSlider" Maximum="100" Minimum="0" Value="100" ThumbColor="#F48B9A" MinimumTrackColor="Beige" MaximumTrackColor="#F5F5DC" HeightRequest="20"/>
+                <Slider x:Name="BackgroundMusicSlider" Maximum="100" Minimum="0"  ThumbColor="#F48B9A" MinimumTrackColor="Beige" MaximumTrackColor="#F5F5DC" HeightRequest="20" Value="{Binding UserSetting.SelectedSetting.Backgroundmusicpercent}"/>
             </Border>
             
             <Image Source="soundeffect_label.png" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" HeightRequest="30" HorizontalOptions="Start"/>
             <Border Padding="10" StrokeShape="RoundRectangle 10" BackgroundColor="Transparent"  Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="4" HeightRequest="25">
-                <Slider x:Name="SoundEffectSlider" Maximum="100" Minimum="0" Value="100" ThumbColor="#F48B9A" MinimumTrackColor="Beige" MaximumTrackColor="#F5F5DC" HeightRequest="20"/>
+                <Slider x:Name="SoundEffectSlider" Maximum="100" Minimum="0"  ThumbColor="#F48B9A" MinimumTrackColor="Beige" MaximumTrackColor="#F5F5DC" HeightRequest="20" Value="{Binding UserSetting.SelectedSetting.Soundeffectpercent}"/>
             </Border>
             
             <Image Source="text_label.png" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" HeightRequest="40"/>

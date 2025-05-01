@@ -16,9 +16,9 @@
             </Grid.RowDefinitions>
 
             <Image Source="academic_corridor.png" Aspect="Fill" Grid.RowSpan="5" Grid.ColumnSpan="6"/>
-            <ImageButton Source="play2_button.png" x:Name="PlayButton" Grid.Row="1" Grid.Column="3" HeightRequest="55" WidthRequest="127"  HorizontalOptions="Start" Padding="1" Clicked="PlayButton_Clicked" />
-            <ImageButton Source="setting2_button.png" x:Name="SettingButton" Grid.Row="2" Grid.Column="3"  HeightRequest="65" WidthRequest="158"  HorizontalOptions="Start" Padding="4" Clicked="SettingButton_Clicked"/>
-            <ImageButton Source="exit2_button.png" x:Name="ExitButton" Grid.Row="3" Grid.Column="3"  HeightRequest="65" WidthRequest="90" HorizontalOptions="Start" Padding="1" Clicked="ExitButton_Clicked" />
+            <ImageButton Source="play2_button.png" x:Name="PlayButton" Grid.Row="1" Grid.Column="3" HeightRequest="55" WidthRequest="127"  HorizontalOptions="Start" Padding="1"/>
+            <ImageButton Source="setting2_button.png" x:Name="SettingButton" Grid.Row="2" Grid.Column="3"  HeightRequest="65" WidthRequest="158"  HorizontalOptions="Start" Padding="4"/>
+            <ImageButton Source="exit2_button.png" x:Name="ExitButton" Grid.Row="3" Grid.Column="3"  HeightRequest="65" WidthRequest="90" HorizontalOptions="Start" Padding="1"/>
         </Grid>
     </FlexLayout>
 </ContentPage>
