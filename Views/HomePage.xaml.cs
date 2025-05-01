@@ -28,8 +28,8 @@ public partial class HomePage : ContentPage
     {
         var button = sender as ImageButton;
         button.Source = "play1_button.png";
-        button.WidthRequest = 230;
-        button.HeightRequest = 65;
+        button.WidthRequest = 250;
+        button.HeightRequest = 95;
 
         ChangeGridSizeRow1();
     }
@@ -43,7 +43,7 @@ public partial class HomePage : ContentPage
         await Task.Delay(100);
 
         button.Source = "play2_button.png";
-        button.WidthRequest = 147;
+        button.WidthRequest = 150;
         button.HeightRequest = 65;
 
         ChangeGridSizeBack();
@@ -59,7 +59,7 @@ public partial class HomePage : ContentPage
         var button = sender as ImageButton;
         button.Source = "setting1_button.png";
         button.WidthRequest = 250;
-        button.HeightRequest = 65;
+        button.HeightRequest = 85;
 
         ChangeGridSizeRow2();
     }
@@ -73,7 +73,7 @@ public partial class HomePage : ContentPage
         await Task.Delay(100);
 
         button.Source = "setting2_button.png";
-        button.WidthRequest = 158;
+        button.WidthRequest = 150;
         button.HeightRequest = 65;
 
         ChangeGridSizeBack();
@@ -88,8 +88,8 @@ public partial class HomePage : ContentPage
     {
         var button = sender as ImageButton;
         button.Source = "exit1_button.png";
-        button.WidthRequest = 180;
-        button.HeightRequest = 65;
+        button.WidthRequest = 250;
+        button.HeightRequest = 75;
 
         ChangeGridSizeRow3();
     }
@@ -103,8 +103,8 @@ public partial class HomePage : ContentPage
         await Task.Delay(100);
 
         button.Source = "exit2_button.png";
-        button.WidthRequest = 90;
-        button.HeightRequest = 65;
+        button.WidthRequest = 150;
+        button.HeightRequest = 50;
 
         ChangeGridSizeBack();
 
