@@ -22,7 +22,6 @@ public partial class HomePage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
-
     // Animation Clicked
     private void PlayButton_Pressed(object sender, EventArgs e)
     {

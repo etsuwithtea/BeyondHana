@@ -6,8 +6,8 @@
     <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
         <Grid RowDefinitions="0.8*,*,*,0.8*" ColumnDefinitions="*,*,*,*">
             <Image Source="onclosebg.png" Aspect="Fill" Grid.RowSpan="4" Grid.ColumnSpan="4" />
-            <ImageButton Source="back_button.png" Grid.Row ="1" Grid.Column="2" HeightRequest="70" WidthRequest="144"  HorizontalOptions="Start"  VerticalOptions="End" Clicked="BackButton_Clicked"/>
-            <ImageButton Source="close_button.png" Grid.Row ="2" Grid.Column="2" HeightRequest="70" WidthRequest="181" HorizontalOptions="Start" Clicked="CloseButton_Clicked"/>
+            <ImageButton Source="back2_button.png" x:Name="BackButton" Grid.Row ="1" Grid.Column="2" HeightRequest="70" WidthRequest="180"  HorizontalOptions="Center"  Margin="55,0,0,0"/>
+            <ImageButton Source="close2_button.png" x:Name="CloseButton" Grid.Row ="2" Grid.Column="2" HeightRequest="70" WidthRequest="180" HorizontalOptions="Center" Margin="45,0,0,0"/>
         </Grid>
     </FlexLayout>
 </ContentPage>

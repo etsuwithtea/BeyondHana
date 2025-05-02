@@ -5,80 +5,93 @@ public partial class PlayPage : ContentPage
 	public PlayPage()
 	{
 		InitializeComponent();
+
+        // set button to clickable
         NewGameButton.Pressed += NewGameButton_Pressed;
         NewGameButton.Released += NewGameButton_Released;
         ContinueButton.Pressed += ContinueButton_Pressed;
         ContinueButton.Released += ContinueButton_Released;
         LoadGameButton.Pressed += LoadGameButton_Pressed;
         LoadGameButton.Released += LoadGameButton_Released;
+        BackButton.Pressed += BackButton_Pressed;
+        BackButton.Released += BackButton_Released;
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-
         // Hide the navigation bar
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
+
     private void NewGameButton_Pressed(object sender, EventArgs e)
-    {
+    {   
+        // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "NewGame1_button.png";
         button.WidthRequest = 230;
         button.HeightRequest = 65;
 
+        // Change the grid size of the row
         ChangeGridSizeRow1();
     }
     private async void NewGameButton_Released(object sender, EventArgs e)
     {
+        // Animation Clicked
         var button = sender as ImageButton;
-
         await button.ScaleTo(0.95, 100);
         await button.ScaleTo(1, 100);
-
         await Task.Delay(100);
 
+        // Reset the button appearance
         button.Source = "NewGame2_button.png";
         button.WidthRequest = 147;
         button.HeightRequest = 65;
 
+        // Change the grid size of the row
         ChangeGridSizeBack();
 
         // Navigate to the PlayPage
         //await Navigation.PushAsync(new Views.PlayPage());
     }
 
+
     private void ContinueButton_Pressed(object sender, EventArgs e)
     {
+        // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "Continue1_button.png";
         button.WidthRequest = 230;
         button.HeightRequest = 65;
 
+        // Change the grid size of the row
         ChangeGridSizeRow2();
     }
     private async void ContinueButton_Released(object sender, EventArgs e)
     {
+        // Animation Clicked
         var button = sender as ImageButton;
-
         await button.ScaleTo(0.95, 100);
         await button.ScaleTo(1, 100);
-
         await Task.Delay(100);
 
+        // Reset the button appearance
         button.Source = "Continue2_button.png";
         button.WidthRequest = 147;
         button.HeightRequest = 65;
 
+        // Change the grid size of the row
         ChangeGridSizeBack();
 
         // Navigate to the PlayPage
         //await Navigation.PushAsync(new Views.PlayPage());
     }
 
+
     private void LoadGameButton_Pressed(object sender, EventArgs e)
     {
+        // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "LoadGame1_button.png";
         button.WidthRequest = 230;
@@ -86,33 +99,42 @@ public partial class PlayPage : ContentPage
 
         ChangeGridSizeRow3();
     }
-
     private async void LoadGameButton_Released(object sender, EventArgs e)
     {
+        // Animation Clicked
         var button = sender as ImageButton;
-
         await button.ScaleTo(0.95, 100);
         await button.ScaleTo(1, 100);
-
         await Task.Delay(100);
 
+        // Reset the button appearance
         button.Source = "LoadGame2_button.png";
         button.WidthRequest = 147;
         button.HeightRequest = 65;
 
+        // Change the grid size of the row
         ChangeGridSizeBack();
 
-        // Navigate to the PlayPage
-        //await Navigation.PushAsync(new Views.PlayPage());
+        // Navigate to the LoadAndSaveGamePage
+        await Navigation.PushAsync(new Views.LoadAndSaveGamePage());
     }
 
 
-    private async void BackButton_Clicked(object sender, EventArgs e)
+    private void BackButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
-        await button.ScaleTo(0.95, 200);
-        await button.ScaleTo(1, 200);
+        button.Source = "back2_label.png";
+    }
+    private async void BackButton_Released(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        await button.ScaleTo(0.95, 100);
+        await button.ScaleTo(1, 100);
+        await Task.Delay(100);
+        // Reset the button appearance
+        button.Source = "back1_label.png";
 
         // Navigate back to the previous page
         await Navigation.PopAsync();
@@ -132,6 +154,7 @@ public partial class PlayPage : ContentPage
     {
         Row3.Height = new GridLength(0.7, GridUnitType.Star);
     }
+
     // Change the grid size back to normal
     private async Task ChangeGridSizeBack()
     {

@@ -30,7 +30,7 @@
             <ImageButton Source="checkbox_1.png" x:Name="NormalText_CheckBox" Grid.Row="6" Grid.Column="6" HeightRequest="30" Clicked="NormalTextCheckButton_Clicked"/>
             <Image Source="normal_label.png" Grid.Row="6" Grid.Column="7" HeightRequest="30" HorizontalOptions="Start"/>
 
-            <ImageButton Source="back_label.png" Grid.Row="7" Grid.ColumnSpan="10" Clicked="BackButton_Clicked"/>
+            <ImageButton Source="back1_label.png" Grid.Row="7" Grid.ColumnSpan="10" x:Name="BackButton"/>
         </Grid>
     </FlexLayout>
 </ContentPage>

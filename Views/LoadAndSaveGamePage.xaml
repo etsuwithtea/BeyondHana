@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.LoadAndSaveGamePage"
+             Title="LoadAndSaveGamePage">
+    <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
+        <Grid ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,*,*,*,*" RowSpacing="10">
+
+            <Image Source="academic_corridor2.png" Aspect="Fill" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="7"/>
+            <Image Source="loadgame_label.png" Grid.Row="1" Grid.ColumnSpan="5" WidthRequest="250"/>
+            
+            <Grid Grid.Row="2" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,*,*" >
+                <Image Source="saveslot1_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                <ImageButton Source="playicon_button.png" Grid.Column="1"  WidthRequest="75"/>
+                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75"/>
+            </Grid>
+            <Grid Grid.Row="3" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,0.4*,0.4*" >
+                <Image Source="saveslot2_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                <ImageButton Source="playicon_button.png" Grid.Column="1"  WidthRequest="75"/>
+                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75"/>
+            </Grid>
+            <Grid Grid.Row="4" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,0.4*,0.4*" >
+                <Image Source="saveslot3_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                <ImageButton Source="playicon_button.png" Grid.Column="1"  WidthRequest="75"/>
+                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75"/>
+            </Grid>
+
+            <ImageButton Source="back1_label.png" Grid.Row="5" Grid.ColumnSpan="5" HorizontalOptions="Center" HeightRequest="65" WidthRequest="100" Margin="0,20,0,0" x:Name="BackButton"/>
+        </Grid>
+    </FlexLayout>
+</ContentPage>

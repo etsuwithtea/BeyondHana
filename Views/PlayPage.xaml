@@ -21,8 +21,7 @@
             <ImageButton Source="continue2_button.png" x:Name="ContinueButton" Grid.Row="2" Grid.Column="2" HeightRequest="65" WidthRequest="150"  HorizontalOptions="Center"/>
             <ImageButton Source="loadgame2_button.png" x:Name="LoadGameButton" Grid.Row="3" Grid.Column="2" HeightRequest="65" WidthRequest="150" HorizontalOptions="Center" Margin="0,20,0,0"/>
 
-            <ImageButton Source="back_label.png" Grid.Row="4" Grid.ColumnSpan="5" HorizontalOptions="Center" HeightRequest="65" WidthRequest="100" Margin="0,20,0,0" Clicked="BackButton_Clicked"/>
-
+            <ImageButton Source="back1_label.png" Grid.Row="4" Grid.ColumnSpan="5" HorizontalOptions="Center" HeightRequest="65" WidthRequest="100" Margin="0,20,0,0" x:Name="BackButton"/>
         </Grid>
     </FlexLayout>
 </ContentPage>
