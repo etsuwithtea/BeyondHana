@@ -24,37 +24,20 @@ public partial class TitlePage : ContentPage
 
     private async void StartButton_Clicked(object sender, EventArgs e)
     {
+
+        // Play sound effect
+        var combinedVM = BindingContext as CombinedVM;
+        if (combinedVM == null) return;
+        var setting = combinedVM.UserSetting.SelectedSetting;
+        if (setting == null) return;
+        
         // Animation Clicked
         var button = sender as ImageButton;
         // Soft Bounce Animation
         await button.ScaleTo(0.85, 150, Easing.CubicOut);
         await button.ScaleTo(1.05, 150, Easing.CubicInOut);
-        await button.ScaleTo(1.0, 150, Easing.SpringOut);
-
-        // Play sound effect
-
-        var combinedVM = BindingContext as CombinedVM;
-        if (combinedVM == null) return;
-
-        // Get the selected setting
-        var setting = combinedVM.UserSetting.SelectedSetting;
-        if (setting == null) return;
-
         await PlaySoundAsync("buttonclicksound.mp3", setting.Soundeffectpercent);
-        //// Check if the sound effect is enabled
-        //if (player == null)
-        //{
-        //    audioManager = AudioManager.Current;
-        //    var stream = await FileSystem.OpenAppPackageFileAsync("buttonclicksound.mp3");
-        //    player = audioManager.CreatePlayer(stream);
-        //    player.Loop = false;
-        //    player.Volume = 1.0;
-        //}
-        //else if(player != null)
-        //{
-        //    player.Volume = (setting.Soundeffectpercent) / 100;
-        //}
-        //player.Play();
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         // Navigate to the HomePage
         await Navigation.PushAsync(new Views.HomePage());
