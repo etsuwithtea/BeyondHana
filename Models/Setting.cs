@@ -5,9 +5,9 @@ namespace BeyondHana.Models
     {
        
         [ObservableProperty]
-        private int backgroundmusicpercent;
+        private double backgroundmusicpercent;
         [ObservableProperty]
-        private int soundeffectpercent;
+        private double soundeffectpercent;
         [ObservableProperty]
         private int textsize;
     }

@@ -28,8 +28,8 @@ namespace BeyondHana.ViewModels
         {
             return new ObservableCollection<Setting> {
             new Setting {
-                Backgroundmusicpercent = 100,
-                Soundeffectpercent = 100,
+                Backgroundmusicpercent = 1.0,
+                Soundeffectpercent = 1.0,
                 Textsize = 14
             }
         };
