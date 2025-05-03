@@ -14,18 +14,17 @@ namespace BeyondHana.Models
         private int textsize;
 
 
+        // This method is called when the Textsize property changes
         partial void OnTextsizeChanged(int value)
         {
             Preferences.Set("Textsize", value);
         }
-
-        // จะถูกเรียกเมื่อ backgroundMusicPercent เปลี่ยน
+        // This method is called when the BackgroundMusicPercent property changes
         partial void OnBackgroundmusicpercentChanged(double value)
         {
             Preferences.Set("BackgroundMusicPercent", value);
         }
-
-        // จะถูกเรียกเมื่อ soundEffectPercent เปลี่ยน
+        // This method is called when the SoundEffectPercent property changes
         partial void OnSoundeffectpercentChanged(double value)
         {
             Preferences.Set("SoundEffectPercent", value);
