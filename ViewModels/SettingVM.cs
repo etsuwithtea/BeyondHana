@@ -28,9 +28,9 @@ namespace BeyondHana.ViewModels
         {
             return new ObservableCollection<Setting> {
             new Setting {
-                Backgroundmusicpercent = 1.0,
-                Soundeffectpercent = 1.0,
-                Textsize = 14
+                Backgroundmusicpercent = Preferences.Get("BackgroundMusicPercent", 1.0),
+                Soundeffectpercent = Preferences.Get("SoundEffectPercent", 1.0),
+                Textsize = Preferences.Get("Textsize", 14)
             }
         };
         }
