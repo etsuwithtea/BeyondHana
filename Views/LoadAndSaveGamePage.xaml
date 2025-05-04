@@ -8,21 +8,26 @@
 
             <Image Source="academic_corridor2.png" Aspect="Fill" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="7"/>
             <Image Source="loadgame_label.png" Grid.Row="1" Grid.ColumnSpan="5" WidthRequest="250"/>
-            
-            <Grid Grid.Row="2" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,*,*" >
+
+            <Image x:Name="NoLoad1" Source="noslotsave_label.png" Grid.Row="2" Grid.ColumnSpan="7" HorizontalOptions="Center" WidthRequest="350"/>
+            <Grid x:Name="GridLoad1" Grid.Row="2" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,*,*" >
                 <Image Source="saveslot1_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
                 <ImageButton Source="playicon_button.png" Grid.Column="1"  WidthRequest="75"/>
-                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75"/>
+                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75" Clicked="DeleteButton1_Clicked"/>
             </Grid>
-            <Grid Grid.Row="3" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,0.4*,0.4*" >
+
+            <Image x:Name="NoLoad2" Source="noslotsave_label.png" Grid.Row="3" Grid.ColumnSpan="7" HorizontalOptions="Center" WidthRequest="350"/>
+            <Grid x:Name="GridLoad2" Grid.Row="3" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,0.4*,0.4*" >
                 <Image Source="saveslot2_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
                 <ImageButton Source="playicon_button.png" Grid.Column="1"  WidthRequest="75"/>
-                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75"/>
+                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75" Clicked="DeleteButton2_Clicked"/>
             </Grid>
-            <Grid Grid.Row="4" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,0.4*,0.4*" >
+
+            <Image x:Name="NoLoad3" Source="noslotsave_label.png" Grid.Row="4" Grid.ColumnSpan="7" HorizontalOptions="Center" WidthRequest="350"/>
+            <Grid x:Name="GridLoad3" Grid.Row="4" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,0.4*,0.4*" >
                 <Image Source="saveslot3_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
                 <ImageButton Source="playicon_button.png" Grid.Column="1"  WidthRequest="75"/>
-                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75"/>
+                <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75" Clicked="DeleteButton3_Clicked"/>
             </Grid>
 
             <ImageButton Source="back1_label.png" Grid.Row="5" Grid.ColumnSpan="5" HorizontalOptions="Center" HeightRequest="65" WidthRequest="100" Margin="0,20,0,0" x:Name="BackButton"/>

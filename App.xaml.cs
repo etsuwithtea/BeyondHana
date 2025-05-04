@@ -1,4 +1,5 @@
 ﻿using BeyondHana.ViewModels;
+using BeyondHana.Data;
 namespace BeyondHana
 {
     public partial class App : Application
@@ -20,8 +21,11 @@ namespace BeyondHana
         // This method is called when the application is on  sleep
         protected override void OnSleep()
         {
+            SaveUserDataToDatabase();
             CombinedVM.BGAudioPlayer.Stop();
+            
         }
+
         // / This method is called when the application is resumed from sleep
         protected override void OnResume()
         {
@@ -30,5 +34,17 @@ namespace BeyondHana
             var setting = CombinedVM.UserSetting.SelectedSetting;
             CombinedVM.BGAudioPlayer.PlayAsync(Preferences.Get("currentBGAudioFile", "soundtrack_wait.wav"), setting.Backgroundmusicpercent);
         }
+
+        private void SaveUserDataToDatabase()
+        {
+            UserSaveGameDatabaseHelper.Instance.InitAsync();
+            var saveGames = CombinedVM.UserSaveGames.saveGames;
+            foreach (var save in saveGames)
+            {
+                UserSaveGameDatabaseHelper.Instance.SaveNoteAsync(save);
+            }
+            Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
+        }
+
     }
 }

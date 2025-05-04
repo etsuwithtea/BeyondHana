@@ -13,6 +13,8 @@ namespace BeyondHana.ViewModels
         public SettingVM UserSetting => SettingVM.Instance;
         public AudioPlayerVM AudioPlayer { get; set; } = new AudioPlayerVM();
         public BGAudioPlayerVM BGAudioPlayer { get; set; } = new BGAudioPlayerVM();
+        public UserSaveGamesVM UserSaveGames { get; set; } = new UserSaveGamesVM();
+
         // Constructor
         public CombinedVM()
         {

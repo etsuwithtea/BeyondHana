@@ -16,6 +16,7 @@ namespace BeyondHana.ViewModels
             audioPlayer?.Stop();
             await LoadNewPlayerAsync(fileName, volume);
             await Task.Delay(50);
+            audioPlayer.Loop = true;
             audioPlayer.Play();
         }
         // Stop background music
