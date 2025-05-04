@@ -13,13 +13,13 @@ namespace BeyondHana.ViewModels
         public SettingVM UserSetting => SettingVM.Instance;
         public AudioPlayerVM AudioPlayer { get; set; } = new AudioPlayerVM();
         public BGAudioPlayerVM BGAudioPlayer { get; set; } = new BGAudioPlayerVM();
-
+        // Constructor
         public CombinedVM()
         {
             if (UserSetting.SelectedSetting != null)
                 UserSetting.SelectedSetting.PropertyChanged += SelectedSetting_PropertyChanged;
         }
-
+        // This method is called when the selected setting changes
         private void SelectedSetting_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(UserSetting.SelectedSetting.Backgroundmusicpercent))

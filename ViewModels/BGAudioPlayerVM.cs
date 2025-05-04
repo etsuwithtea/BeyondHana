@@ -10,7 +10,7 @@ namespace BeyondHana.ViewModels
     public class BGAudioPlayerVM
     {
         private IAudioPlayer? audioPlayer;
-
+        // Play background music
         public async Task PlayAsync(string fileName, double volume)
         {
             audioPlayer?.Stop();
@@ -18,12 +18,12 @@ namespace BeyondHana.ViewModels
             await Task.Delay(50);
             audioPlayer.Play();
         }
-
+        // Stop background music
         public void Stop()
         {
             audioPlayer?.Stop();
         }
-
+        // Preload background music
         public async void Preload(string fileName)
         {
             
@@ -32,6 +32,7 @@ namespace BeyondHana.ViewModels
                 await LoadNewPlayerAsync(fileName, 1.0);
             } 
         }
+        // Load new player
         private async Task LoadNewPlayerAsync(string fileName, double volume)
         {
             audioPlayer?.Stop();
@@ -42,7 +43,7 @@ namespace BeyondHana.ViewModels
             audioPlayer.Volume = volume;
             Preferences.Set("currentBGAudioFile", fileName); 
         }
-
+        // Set volume
         public void SetVolume(double volume)
         {
             if (audioPlayer != null)

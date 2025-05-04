@@ -17,12 +17,12 @@ namespace BeyondHana
             var navigationPage = new NavigationPage(new Views.TitlePage());
             return new Window(navigationPage);
         }
-
+        // This method is called when the application is on  sleep
         protected override void OnSleep()
         {
             CombinedVM.BGAudioPlayer.Stop();
         }
-
+        // / This method is called when the application is resumed from sleep
         protected override void OnResume()
         {
             base.OnResume();
