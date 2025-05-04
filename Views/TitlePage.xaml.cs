@@ -33,16 +33,6 @@ public partial class TitlePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        //Console.WriteLine($"ID : {App.CombinedVM.UserSaveGames.saveGames[0].ID}");
-        //Console.WriteLine($"Chapter : {App.CombinedVM.UserSaveGames.saveGames[0].Chapter}");
-        //Console.WriteLine($"isSave : {App.CombinedVM.UserSaveGames.saveGames[0].isSave}");
-        //Console.WriteLine($"ID : {App.CombinedVM.UserSaveGames.saveGames[1].ID}");
-        //Console.WriteLine($"Chapter : {App.CombinedVM.UserSaveGames.saveGames[1].Chapter}");
-        //Console.WriteLine($"isSave : {App.CombinedVM.UserSaveGames.saveGames[1].isSave}");
-        //Console.WriteLine($"ID : {App.CombinedVM.UserSaveGames.saveGames[2].ID}");
-        //Console.WriteLine($"Chapter : {App.CombinedVM.UserSaveGames.saveGames[2].Chapter}");
-        //Console.WriteLine($"isSave : {App.CombinedVM.UserSaveGames.saveGames[2].isSave}");
-
         // Navigate to the HomePage
         await Navigation.PushAsync(new Views.HomePage());
     }

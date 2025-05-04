@@ -41,7 +41,8 @@ public partial class SettingPage : ContentPage
         var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
         PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
-        App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_imhere.wav", setting.Backgroundmusicpercent);
+
+        //App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_imhere.wav", setting.Backgroundmusicpercent);
         // Set the text size to small
         setting.Textsize = 10;
         SmallText_CheckBox.Source = "checkbox_2.png";

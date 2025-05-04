@@ -1,16 +1,19 @@
-﻿using BeyondHana.ViewModels;
-using BeyondHana.Data;
+﻿using BeyondHana.Data;
 namespace BeyondHana.Views;
 
 public partial class LoadAndSaveGamePage : ContentPage
 {
-	public LoadAndSaveGamePage()
+    private bool CheckIsLoadGamePageOn;
+	public LoadAndSaveGamePage(bool Check)
 	{
 		InitializeComponent();
         BackButton.Pressed += BackButton_Pressed;
         BackButton.Released += BackButton_Released;
 
+
+        this.CheckIsLoadGamePageOn = Check;
         BindingContext = App.CombinedVM;
+ 
     }
     protected override void OnAppearing()
     {
@@ -18,8 +21,26 @@ public partial class LoadAndSaveGamePage : ContentPage
         // Hide the navigation bar
         NavigationPage.SetHasNavigationBar(this, false);
 
-        
-        UpdateSave();
+        if (CheckIsLoadGamePageOn == true)
+        {
+            Loadgame_label.IsVisible = true;
+            Savegame_label.IsVisible = false;
+            SaveButton1.IsVisible = false;
+            SaveButton2.IsVisible = false;
+            SaveButton3.IsVisible = false;
+            UpdateSave();
+
+        }
+        else if (CheckIsLoadGamePageOn == false) { 
+            Loadgame_label.IsVisible = false;
+            Savegame_label.IsVisible = true;
+            PlayButton1.IsVisible = false;
+            PlayButton2.IsVisible = false;
+            PlayButton3.IsVisible = false;
+            NoLoad1.IsVisible = false;
+            NoLoad2.IsVisible = false;
+            NoLoad3.IsVisible = false;
+        }
     }
     private void UpdateSave()
     {
@@ -135,4 +156,42 @@ public partial class LoadAndSaveGamePage : ContentPage
         UpdateSave();
     }
 
+    private async void SaveButton1_Clicked(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        // Soft Bounce Animation
+        await button.ScaleTo(0.85, 150, Easing.CubicOut);
+        await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        App.CombinedVM.UserSaveGames.saveGames[0].isSave = "Yes";
+    }
+
+    private async void SaveButton2_Clicked(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        // Soft Bounce Animation
+        await button.ScaleTo(0.85, 150, Easing.CubicOut);
+        await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        App.CombinedVM.UserSaveGames.saveGames[1].isSave = "Yes";
+    }
+
+    private async void SaveButton3_Clicked(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        // Soft Bounce Animation
+        await button.ScaleTo(0.85, 150, Easing.CubicOut);
+        await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        App.CombinedVM.UserSaveGames.saveGames[2].isSave = "Yes";
+    }
 }

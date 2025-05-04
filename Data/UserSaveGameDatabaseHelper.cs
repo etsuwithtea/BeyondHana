@@ -16,8 +16,8 @@ namespace BeyondHana.Data
             var dbFileName = "UserSaveGamesDB.db";
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, dbFileName);
 
-            // เวลาจะเปลี่ยนข้อมูล
-            //// ลบไฟล์ฐานข้อมูลเก่าจาก AppDataDirectory ก่อน
+            //เวลาจะเปลี่ยนข้อมูล
+            // ลบไฟล์ฐานข้อมูลเก่าจาก AppDataDirectory ก่อน
             //if (File.Exists(dbPath))
             //{
             //    Console.WriteLine("❌ [DB] พบฐานข้อมูลเก่า -> กำลังลบ");

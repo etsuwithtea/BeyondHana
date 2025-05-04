@@ -32,7 +32,6 @@ namespace BeyondHana.ViewModels
                 //Console.WriteLine($"Chapter : {item.Chapter}");
                 //Console.WriteLine($"isSave : {item.isSave}");
             }
-
         }
     }
 }

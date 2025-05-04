@@ -87,7 +87,7 @@ public partial class PlayPage : ContentPage
         ChangeGridSizeBack();
 
         // Navigate to the PlayPage
-        //await Navigation.PushAsync(new Views.PlayPage());
+        await Navigation.PushAsync(new Views.LoadAndSaveGamePage(false));
     }
 
 
@@ -119,7 +119,7 @@ public partial class PlayPage : ContentPage
         ChangeGridSizeBack();
 
         // Navigate to the LoadAndSaveGamePage
-        await Navigation.PushAsync(new Views.LoadAndSaveGamePage());
+        await Navigation.PushAsync(new Views.LoadAndSaveGamePage(true));
     }
 
 
