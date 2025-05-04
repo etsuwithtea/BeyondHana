@@ -31,6 +31,7 @@ public partial class PlayPage : ContentPage
         var button = sender as ImageButton;
         button.Source = "NewGame1_button.png";
         button.WidthRequest = 230;
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 65;
 
         // Change the grid size of the row
@@ -63,6 +64,7 @@ public partial class PlayPage : ContentPage
         var button = sender as ImageButton;
         button.Source = "Continue1_button.png";
         button.WidthRequest = 230;
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 65;
 
         // Change the grid size of the row
@@ -95,6 +97,7 @@ public partial class PlayPage : ContentPage
         var button = sender as ImageButton;
         button.Source = "LoadGame1_button.png";
         button.WidthRequest = 230;
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 65;
 
         ChangeGridSizeRow3();
@@ -125,6 +128,7 @@ public partial class PlayPage : ContentPage
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "back2_label.png";
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
     }
     private async void BackButton_Released(object sender, EventArgs e)
     {
@@ -161,5 +165,12 @@ public partial class PlayPage : ContentPage
         Row1.Height = new GridLength(0.45, GridUnitType.Star);
         Row2.Height = new GridLength(0.45, GridUnitType.Star);
         Row3.Height = new GridLength(0.45, GridUnitType.Star);
+    }
+
+    // Sound effect
+    private async Task PlaySoundAsync(string fileName, double volume)
+    {
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
     }
 }

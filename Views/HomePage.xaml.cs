@@ -27,6 +27,7 @@ public partial class HomePage : ContentPage
     {
         var button = sender as ImageButton;
         button.Source = "play1_button.png";
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.WidthRequest = 250;
         button.HeightRequest = 95;
 
@@ -57,6 +58,7 @@ public partial class HomePage : ContentPage
     {
         var button = sender as ImageButton;
         button.Source = "setting1_button.png";
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.WidthRequest = 250;
         button.HeightRequest = 85;
 
@@ -87,6 +89,7 @@ public partial class HomePage : ContentPage
     {
         var button = sender as ImageButton;
         button.Source = "exit1_button.png";
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.WidthRequest = 250;
         button.HeightRequest = 75;
 
@@ -131,5 +134,12 @@ public partial class HomePage : ContentPage
         Row1.Height = new GridLength(0.45, GridUnitType.Star);
         Row2.Height = new GridLength(0.45, GridUnitType.Star);
         Row3.Height = new GridLength(0.45, GridUnitType.Star);
+    }
+
+    // Sound effect
+    private async Task PlaySoundAsync(string fileName, double volume)
+    {
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
     }
 }

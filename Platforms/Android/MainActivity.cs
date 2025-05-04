@@ -28,7 +28,12 @@ public class MainActivity : MauiAppCompatActivity
         }
 
         //Make Application Not Shwoing Safe Area to Distrub Gameplay
-        Window.DecorView.SystemUiVisibility = (StatusBarVisibility)(SystemUiFlags.ImmersiveSticky | SystemUiFlags.LayoutStable 
-            | SystemUiFlags.LayoutFullscreen | SystemUiFlags.Fullscreen | SystemUiFlags.HideNavigation);
+        var decorView = Window.DecorView;
+        decorView.SystemUiFlags =
+            SystemUiFlags.ImmersiveSticky |
+            SystemUiFlags.LayoutStable |
+            SystemUiFlags.LayoutFullscreen |
+            SystemUiFlags.Fullscreen |
+            SystemUiFlags.HideNavigation;
     }
 }

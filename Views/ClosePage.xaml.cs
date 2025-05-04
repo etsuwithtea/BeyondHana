@@ -25,6 +25,7 @@ public partial class ClosePage : ContentPage
         var button = sender as ImageButton;
         button.Source = "back1_button.png";
         button.WidthRequest = 275;
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 100;
 
     }
@@ -51,6 +52,7 @@ public partial class ClosePage : ContentPage
         var button = sender as ImageButton;
         button.Source = "close1_button.png";
         button.WidthRequest = 275;
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 100;
 
     }
@@ -68,5 +70,12 @@ public partial class ClosePage : ContentPage
 
         // Close the application
         Application.Current.Quit();
+    }
+
+    // Sound effect
+    private async Task PlaySoundAsync(string fileName, double volume)
+    {
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
     }
 }

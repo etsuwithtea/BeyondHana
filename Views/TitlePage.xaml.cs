@@ -1,7 +1,8 @@
 namespace BeyondHana.Views;
 using BeyondHana.ViewModels;
-using Microsoft.Maui.Storage;
+using CommunityToolkit.Maui.Views;
 using Plugin.Maui.Audio;
+
 public partial class TitlePage : ContentPage
 {
     private IAudioManager audioManager = AudioManager.Current;
@@ -11,7 +12,7 @@ public partial class TitlePage : ContentPage
 		InitializeComponent();
 
         // Set binding context to CombinedVM
-        BindingContext = new CombinedVM();
+        BindingContext = App.CombinedVM;
     }
 
     protected override void OnAppearing()
@@ -23,36 +24,23 @@ public partial class TitlePage : ContentPage
     }
 
     private async void StartButton_Clicked(object sender, EventArgs e)
-    {
-
-        // Play sound effect
-        var combinedVM = BindingContext as CombinedVM;
-        if (combinedVM == null) return;
-        var setting = combinedVM.UserSetting.SelectedSetting;
-        if (setting == null) return;
-        
+    {       
         // Animation Clicked
         var button = sender as ImageButton;
         // Soft Bounce Animation
         await button.ScaleTo(0.85, 150, Easing.CubicOut);
         await button.ScaleTo(1.05, 150, Easing.CubicInOut);
-        await PlaySoundAsync("buttonclicksound.mp3", setting.Soundeffectpercent);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         // Navigate to the HomePage
         await Navigation.PushAsync(new Views.HomePage());
     }
 
+    // Sound effect
     private async Task PlaySoundAsync(string fileName, double volume)
     {
-        // Stop and dispose old player if it exists
-        player?.Stop();
-        player?.Dispose();
-
-        // Load new file and create player
-        var stream = await FileSystem.OpenAppPackageFileAsync(fileName);
-        player = audioManager.CreatePlayer(stream);
-        player.Volume = volume;
-        player.Play();
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
     }
 }

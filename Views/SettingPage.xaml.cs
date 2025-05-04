@@ -5,7 +5,7 @@ public partial class SettingPage : ContentPage
     public SettingPage()
 	{
 		InitializeComponent();
-        BindingContext = new CombinedVM(); // Set the BindingContext to CombinedVM
+        BindingContext = App.CombinedVM; // Set the BindingContext to CombinedVM
 
         BackButton.Pressed += BackButton_Pressed;
         BackButton.Released += BackButton_Released;
@@ -18,12 +18,8 @@ public partial class SettingPage : ContentPage
         // Hide the navigation bar
         NavigationPage.SetHasNavigationBar(this, false);
 
-        // Set the initial state of the checkboxes based on the selected setting
-        var combinedVM = BindingContext as CombinedVM;
-        if (combinedVM == null) return;
-
         // Get the selected setting
-        var setting = combinedVM.UserSetting.SelectedSetting;
+        var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
 
         if (setting.Textsize == 10)
@@ -41,14 +37,10 @@ public partial class SettingPage : ContentPage
 
     private void SmallTextCheckButton_Clicked(object sender, EventArgs e)
     {
-        // Set the initial state of the checkboxes based on the selected setting
-        var combinedVM = BindingContext as CombinedVM;
-        if (combinedVM == null) return;
-
         // Get the selected setting
-        var setting = combinedVM.UserSetting.SelectedSetting;
+        var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
-
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         // Set the text size to small
         setting.Textsize = 10;
         SmallText_CheckBox.Source = "checkbox_2.png";
@@ -56,14 +48,10 @@ public partial class SettingPage : ContentPage
     }
     private void NormalTextCheckButton_Clicked(object sender, EventArgs e)
     {
-        // Set the initial state of the checkboxes based on the selected setting
-        var combinedVM = BindingContext as CombinedVM;
-        if (combinedVM == null) return;
-
         // Get the selected setting
-        var setting = combinedVM.UserSetting.SelectedSetting;
+        var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
-
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         // Set the text size to normal
         setting.Textsize = 14;
         SmallText_CheckBox.Source = "checkbox_1.png";
@@ -76,6 +64,7 @@ public partial class SettingPage : ContentPage
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "back2_label.png";
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
     }
     private async void BackButton_Released(object sender, EventArgs e)
     {
@@ -89,5 +78,12 @@ public partial class SettingPage : ContentPage
 
         // Navigate back to the previous page
         await Navigation.PopAsync();
+    }
+
+    // Sound effect
+    private async Task PlaySoundAsync(string fileName, double volume)
+    {
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
     }
 }
