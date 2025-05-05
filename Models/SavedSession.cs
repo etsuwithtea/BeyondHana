@@ -3,7 +3,7 @@
 namespace BeyondHana.Models
 {
     [Table("UserSaveGames")]
-    public class UserSaveGame
+    public class SavedSession
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

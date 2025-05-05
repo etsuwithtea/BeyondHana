@@ -3,13 +3,13 @@ using BeyondHana.Models;
 
 namespace BeyondHana.Data
 {
-    public class UserSaveGameDatabaseHelper
+    public class SaveGameDBHelper
     {
-        private static UserSaveGameDatabaseHelper _instance;
-        public static UserSaveGameDatabaseHelper Instance => _instance ??= new UserSaveGameDatabaseHelper();
+        private static SaveGameDBHelper _instance;
+        public static SaveGameDBHelper Instance => _instance ??= new SaveGameDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
-        public UserSaveGameDatabaseHelper()
+        public SaveGameDBHelper()
         {
             Console.WriteLine("🔧 [Constructor] เริ่มทำงาน");
 
@@ -47,26 +47,26 @@ namespace BeyondHana.Data
         public async Task InitAsync()
         {
             Console.WriteLine("📥 [Init] เริ่มสร้างตาราง...");
-            await _dbConnection.CreateTableAsync<UserSaveGame>();
+            await _dbConnection.CreateTableAsync<SavedSession>();
             Console.WriteLine("🛠️ [DB] ตารางพร้อมใช้งานแล้ว");
         }
 
-        public async Task<List<UserSaveGame>> GetNotesAsync()
+        public async Task<List<SavedSession>> GetNotesAsync()
         {
             try
             {
-                var list = await _dbConnection.Table<UserSaveGame>().ToListAsync();
+                var list = await _dbConnection.Table<SavedSession>().ToListAsync();
                 Console.WriteLine($"📄 [DB] พบข้อมูลจำนวน: {list.Count}");
                 return list;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("❌ [DB ERROR] " + ex.Message);
-                return new List<UserSaveGame>();
+                return new List<SavedSession>();
             }
         }
 
-        public async Task<int> SaveNoteAsync(UserSaveGame savegame)
+        public async Task<int> SaveNoteAsync(SavedSession savegame)
         {
             int result;
 
@@ -81,37 +81,7 @@ namespace BeyondHana.Data
                 result = await _dbConnection.InsertAsync(savegame);
             }
 
-            // คัดลอกฐานข้อมูลจาก AppDataDirectory กลับไปที่โปรเจกต์หลังจากการบันทึก
-            CopyDatabaseBackToProject();
-
             return result;
-        }
-
-        public Task<int> DeleteNoteAsync(UserSaveGame note)
-        {
-            return _dbConnection.DeleteAsync(note);
-        }
-
-        private void CopyDatabaseBackToProject()
-        {
-            var dbFileName = "UserSaveGamesDB.db";
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, dbFileName);
-            var projectDbPath = Path.Combine(FileSystem.AppDataDirectory, "Assets", dbFileName); // ตำแหน่งในโปรเจกต์ที่ต้องการคัดลอกไป
-
-            // ตรวจสอบและคัดลอกไฟล์กลับไปยังโปรเจกต์
-            try
-            {
-                if (File.Exists(dbPath))
-                {
-                    Console.WriteLine("📁 [DB] กำลังคัดลอกกลับไปยังโปรเจกต์...");
-                    File.Copy(dbPath, projectDbPath, true); // true = คัดลอกทับไฟล์เดิม
-                    Console.WriteLine("✅ [DB] คัดลอกกลับเสร็จเรียบร้อย: " + projectDbPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("❌ [DB ERROR] การคัดลอกฐานข้อมูลกลับล้มเหลว: " + ex.Message);
-            }
         }
     }
 }

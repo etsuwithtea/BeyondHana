@@ -20,7 +20,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         base.OnAppearing();
         // Hide the navigation bar
         NavigationPage.SetHasNavigationBar(this, false);
-
+        var saveGames = App.CombinedVM.UserSaveGames.saveGames;
         if (CheckIsLoadGamePageOn == true)
         {
             Loadgame_label.IsVisible = true;
@@ -28,8 +28,6 @@ public partial class LoadAndSaveGamePage : ContentPage
             SaveButton1.IsVisible = false;
             SaveButton2.IsVisible = false;
             SaveButton3.IsVisible = false;
-            UpdateSave();
-
         }
         else if (CheckIsLoadGamePageOn == false) { 
             Loadgame_label.IsVisible = false;
@@ -37,12 +35,11 @@ public partial class LoadAndSaveGamePage : ContentPage
             PlayButton1.IsVisible = false;
             PlayButton2.IsVisible = false;
             PlayButton3.IsVisible = false;
-            NoLoad1.IsVisible = false;
-            NoLoad2.IsVisible = false;
-            NoLoad3.IsVisible = false;
+
         }
+        UpdateSave();
     }
-    private void UpdateSave()
+    private async void UpdateSave()
     {
         Console.WriteLine(App.CombinedVM.UserSaveGames.saveGames[0].isSave);
         Console.WriteLine(App.CombinedVM.UserSaveGames.saveGames[1].isSave);
@@ -59,22 +56,53 @@ public partial class LoadAndSaveGamePage : ContentPage
         // อาร์เรย์ของ Grid และ NoLoad ที่จับคู่กัน
         var gridLoads = new[] { GridLoad1, GridLoad2, GridLoad3 };
         var noLoads = new[] { NoLoad1, NoLoad2, NoLoad3 };
-
-        for (int i = 0; i < 3; i++)
+        if (CheckIsLoadGamePageOn == true)
         {
-            Console.WriteLine($"Slot {i + 1} isSave = {saveGames[i].isSave}");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Slot {i + 1} isSave = {saveGames[i].isSave}");
 
-            if (saveGames[i].isSave == "Yes")
-            {
-                gridLoads[i].IsVisible = true;
-                noLoads[i].IsVisible = false;
-            }
-            else
-            {
-                gridLoads[i].IsVisible = false;
-                noLoads[i].IsVisible = true;
+                if (saveGames[i].isSave == "Yes")
+                {
+                    gridLoads[i].IsVisible = true;
+                    noLoads[i].IsVisible = false;
+                }
+                else
+                {
+                    gridLoads[i].IsVisible = false;
+                    noLoads[i].IsVisible = true;
+                }
             }
         }
+ 
+
+        Console.WriteLine("wowopacity22222222");
+        Console.WriteLine(CheckIsLoadGamePageOn);
+
+        if (CheckIsLoadGamePageOn == false)
+        {
+            Console.WriteLine("wowopacity22222222");
+            for (int i = 0; i < 3; i++)
+            {
+                if (saveGames[i].isSave == "No")
+                {
+                    gridLoads[i].Opacity = 0.5;
+
+                }
+                else
+                {
+                    gridLoads[i].Opacity = 1.0;
+                }
+                noLoads[i].IsVisible = false;
+            }
+        }
+
+        SaveGameDBHelper.Instance.InitAsync();
+        foreach (var save in saveGames)
+        {
+            SaveGameDBHelper.Instance.SaveNoteAsync(save);
+        }
+        Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
     }
     private void BackButton_Pressed(object sender, EventArgs e)
     {
@@ -133,11 +161,11 @@ public partial class LoadAndSaveGamePage : ContentPage
         UpdateSave();
 
 
-        UserSaveGameDatabaseHelper.Instance.InitAsync();
+        SaveGameDBHelper.Instance.InitAsync();
         var saveGames = App.CombinedVM.UserSaveGames.saveGames;
         foreach (var save in saveGames)
         {
-            UserSaveGameDatabaseHelper.Instance.SaveNoteAsync(save);
+            SaveGameDBHelper.Instance.SaveNoteAsync(save);
         }
         Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
     }
@@ -167,6 +195,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         App.CombinedVM.UserSaveGames.saveGames[0].isSave = "Yes";
+        UpdateSave();
     }
 
     private async void SaveButton2_Clicked(object sender, EventArgs e)
@@ -180,6 +209,8 @@ public partial class LoadAndSaveGamePage : ContentPage
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         App.CombinedVM.UserSaveGames.saveGames[1].isSave = "Yes";
+        UpdateSave();
+
     }
 
     private async void SaveButton3_Clicked(object sender, EventArgs e)
@@ -193,5 +224,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         App.CombinedVM.UserSaveGames.saveGames[2].isSave = "Yes";
+        UpdateSave();
+
     }
 }

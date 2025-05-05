@@ -33,6 +33,7 @@ namespace BeyondHana.ViewModels
                 await LoadNewPlayerAsync(fileName, 1.0);
             } 
         }
+
         // Load new player
         private async Task LoadNewPlayerAsync(string fileName, double volume)
         {

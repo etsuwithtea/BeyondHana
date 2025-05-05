@@ -7,16 +7,16 @@ using BeyondHana.Models;
 
 namespace BeyondHana.ViewModels
 {
-    public  class UserSaveGamesVM 
+    public  class SavedSessionVM 
     {
-        private readonly UserSaveGameDatabaseHelper _databaseHelper = UserSaveGameDatabaseHelper.Instance;
-        public ObservableCollection<UserSaveGame> saveGames { get; set; }
+        private readonly SaveGameDBHelper _databaseHelper = SaveGameDBHelper.Instance;
+        public ObservableCollection<SavedSession> saveGames { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public UserSaveGamesVM()
+        public SavedSessionVM()
         {
-            saveGames = new ObservableCollection<UserSaveGame>();
+            saveGames = new ObservableCollection<SavedSession>();
             LoadSaves();      
         }
 

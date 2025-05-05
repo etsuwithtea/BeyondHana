@@ -37,11 +37,11 @@ namespace BeyondHana
 
         private void SaveUserDataToDatabase()
         {
-            UserSaveGameDatabaseHelper.Instance.InitAsync();
+            SaveGameDBHelper.Instance.InitAsync();
             var saveGames = CombinedVM.UserSaveGames.saveGames;
             foreach (var save in saveGames)
             {
-                UserSaveGameDatabaseHelper.Instance.SaveNoteAsync(save);
+                SaveGameDBHelper.Instance.SaveNoteAsync(save);
             }
             Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
         }
