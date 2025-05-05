@@ -16,11 +16,11 @@
             </Grid>
 
             <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5">
-                <Border BackgroundColor="white" Margin="80,25,80,0" Opacity="0.4" StrokeThickness="0" >
+                <Border BackgroundColor="white" Margin="80,30,80,0" Opacity="0.4" StrokeThickness="0" >
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10,10,0,0" />
                     </Border.StrokeShape>
-                    <Grid Margin="30,30,30,15">
+                    <Grid Margin="45,30,45,15">
                         <ScrollView Orientation="Vertical">
                             <Label Text="เข้าใจแล้วครับ! คุณต้องการให้ Label (ที่มีข้อความของ me.sh) อยู่ภายใน Grid โดย ไม่ล้นออกไปด้านข้าง และ ตัดบรรทัดอัตโนมัติเมื่อข้อความยาวเกิน — ทำให้แสดงแบบห่อบรรทัด (wrap) ภายในพื้นที่ของ Gridเข้าใจแล้วครับ! คุณต้องการให้ Label (ที่มีข้อความของ me.sh) อยู่ภายใน Grid โดย ไม่ล้นออกไปด้านข้าง และ ตัดบรรทัดอัตโนมัติเมื่อข้อความยาวเกิน — ทำให้แสดงแบบห่อบรรทัด (wrap) ภายในพื้นที่ของ Grid" TextColor="Black" FontFamily="ItimRegular" LineBreakMode="WordWrap" FontSize="{Binding UserSetting.SelectedSetting.Textsize}"/>
                         </ScrollView>
