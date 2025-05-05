@@ -15,7 +15,6 @@
                 <ImageButton Source="inventoryicon_button.png" x:Name="InventoryButton"  Grid.Column="2" HeightRequest="35"   HorizontalOptions="Center" Clicked="InventoryButton_Clicked"/>
             </Grid>
 
-
             <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5">
                 <Border BackgroundColor="white" Margin="80,25,80,0" Opacity="0.4" StrokeThickness="0" >
                     <Border.StrokeShape>

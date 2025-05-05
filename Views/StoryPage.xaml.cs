@@ -17,11 +17,12 @@ public partial class StoryPage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
-    private void NextButton_Pressed(object sender, EventArgs e)
+    private async void NextButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "storynext2_button.png";
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
     }
     private async void NextButton_Released(object sender, EventArgs e)
     {
@@ -45,6 +46,7 @@ public partial class StoryPage : ContentPage
         // Soft Bounce Animation
         await button.ScaleTo(0.85, 150, Easing.CubicOut);
         await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         await Navigation.PushAsync(new Views.SettingPage());
@@ -57,6 +59,7 @@ public partial class StoryPage : ContentPage
         // Soft Bounce Animation
         await button.ScaleTo(0.85, 150, Easing.CubicOut);
         await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
         // Navigate to the PlayPage
@@ -70,6 +73,14 @@ public partial class StoryPage : ContentPage
         // Soft Bounce Animation
         await button.ScaleTo(0.85, 150, Easing.CubicOut);
         await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
+    }
+
+    // Sound effect
+    private async Task PlaySoundAsync(string fileName, double volume)
+    {
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
     }
 }

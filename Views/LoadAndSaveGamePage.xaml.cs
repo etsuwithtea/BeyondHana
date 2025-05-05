@@ -159,14 +159,6 @@ public partial class LoadAndSaveGamePage : ContentPage
         App.CombinedVM.UserSaveGames.saveGames[1].isSave = "No";
         UpdateSave();
 
-
-        SavedSessionDBHelper.Instance.InitAsync();
-        var saveGames = App.CombinedVM.UserSaveGames.saveGames;
-        foreach (var save in saveGames)
-        {
-            SavedSessionDBHelper.Instance.SaveDataAsync(save);
-        }
-        Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
     }
 
     private async void DeleteButton3_Clicked(object sender, EventArgs e)
