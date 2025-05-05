@@ -27,7 +27,7 @@ namespace BeyondHana.ViewModels
             if (e.PropertyName == nameof(UserSetting.SelectedSetting.Backgroundmusicpercent))
             {
                 BGAudioPlayer.SetVolume(UserSetting.SelectedSetting.Backgroundmusicpercent);
-                Console.WriteLine($"[Volume Changed] {UserSetting.SelectedSetting.Backgroundmusicpercent}");
+                //Console.WriteLine($"[Volume Changed] {UserSetting.SelectedSetting.Backgroundmusicpercent}");
             }
         }
     }

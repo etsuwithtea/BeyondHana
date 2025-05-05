@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.StoryPage"
+             Title="StoryPage">
+    <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
+        <Grid  ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,*,*" RowSpacing="10">
+
+            <Image Source="academic_corridor3_blur.png" x:Name="Background" Aspect="Fill" Grid.ColumnSpan="5" Grid.RowSpan="5"/>
+            <Image Source="hana.png" x:Name="Character" Grid.ColumnSpan="5" Grid.RowSpan="5" HeightRequest="400" VerticalOptions="End"/>
+
+            <Grid ColumnDefinitions="*,*,*" Grid.Row="0" Grid.Column="0" ColumnSpacing="1" HorizontalOptions="Center">
+                <ImageButton Source="settingicon_button.png" x:Name="SettingButton" Grid.Column="0" HeightRequest="45"   HorizontalOptions="Center" Clicked="SettingButton_Clicked"/>
+                <ImageButton Source="saveicon_button.png" x:Name="SaveButton"  Grid.Column="1" HeightRequest="35"   HorizontalOptions="Center" Clicked="SaveButton_Clicked"/>
+                <ImageButton Source="inventoryicon_button.png" x:Name="InventoryButton"  Grid.Column="2" HeightRequest="35"   HorizontalOptions="Center" Clicked="InventoryButton_Clicked"/>
+            </Grid>
+
+
+            <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5">
+                <Border BackgroundColor="white" Margin="80,25,80,0" Opacity="0.4" StrokeThickness="0" >
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,0,0" />
+                    </Border.StrokeShape>
+                    <Grid Margin="30,30,30,30">
+                        <ScrollView Orientation="Vertical">
+                            <Label Text="เข้าใจแล้วครับ! คุณต้องการให้ Label (ที่มีข้อความของ me.sh) อยู่ภายใน Grid โดย ไม่ล้นออกไปด้านข้าง และ ตัดบรรทัดอัตโนมัติเมื่อข้อความยาวเกิน — ทำให้แสดงแบบห่อบรรทัด (wrap) ภายในพื้นที่ของ Gridเข้าใจแล้วครับ! คุณต้องการให้ Label (ที่มีข้อความของ me.sh) อยู่ภายใน Grid โดย ไม่ล้นออกไปด้านข้าง และ ตัดบรรทัดอัตโนมัติเมื่อข้อความยาวเกิน — ทำให้แสดงแบบห่อบรรทัด (wrap) ภายในพื้นที่ของ Grid" TextColor="Black" FontFamily="ItimRegular" LineBreakMode="WordWrap" FontSize="{Binding UserSetting.SelectedSetting.Textsize}"/>
+                        </ScrollView>
+                    </Grid>
+                </Border>
+                <Image Source="hana_label.png" x:Name="WhoSpeak"  Grid.ColumnSpan="5" Grid.RowSpan="6" HeightRequest="50" HorizontalOptions="Start" VerticalOptions="Start" Margin="40,0,0,0"/>
+                <ImageButton Source="storynext2_button.png" Grid.Row="4" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,0" HeightRequest="25" WidthRequest="90"  x:Name="NextButton"/>
+            </Grid>
+        </Grid>
+    </FlexLayout>
+</ContentPage>

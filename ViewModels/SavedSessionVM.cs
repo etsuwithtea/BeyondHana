@@ -1,18 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using BeyondHana.Data;
 using BeyondHana.Models;
-
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BeyondHana.ViewModels
 {
-    public  class SavedSessionVM 
+    public  partial class SavedSessionVM : ObservableObject
     {
-        private readonly SaveGameDBHelper _databaseHelper = SaveGameDBHelper.Instance;
+        private readonly SavedSessionDBHelper _databaseHelper = SavedSessionDBHelper.Instance;
         public ObservableCollection<SavedSession> saveGames { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public SavedSessionVM()
         {
@@ -22,15 +18,12 @@ namespace BeyondHana.ViewModels
 
         private async void LoadSaves()
         {
-            var list = await _databaseHelper.GetNotesAsync();
+            var list = await _databaseHelper.GetDatasAsync();
             saveGames.Clear();
            
             foreach (var item in list)
             {
                 saveGames.Add(item);
-                //Console.WriteLine($"ID : {item.ID}");
-                //Console.WriteLine($"Chapter : {item.Chapter}");
-                //Console.WriteLine($"isSave : {item.isSave}");
             }
         }
     }

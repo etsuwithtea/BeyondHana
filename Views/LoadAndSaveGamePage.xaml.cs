@@ -10,16 +10,22 @@ public partial class LoadAndSaveGamePage : ContentPage
         BackButton.Pressed += BackButton_Pressed;
         BackButton.Released += BackButton_Released;
 
-
         this.CheckIsLoadGamePageOn = Check;
-        BindingContext = App.CombinedVM;
- 
+        BindingContext = App.CombinedVM; 
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
         // Hide the navigation bar
         NavigationPage.SetHasNavigationBar(this, false);
+
+        VisibleConfig();
+        UpdateSave();
+    }
+
+    // 
+    private async void VisibleConfig()
+    {
         var saveGames = App.CombinedVM.UserSaveGames.saveGames;
         if (CheckIsLoadGamePageOn == true)
         {
@@ -29,39 +35,30 @@ public partial class LoadAndSaveGamePage : ContentPage
             SaveButton2.IsVisible = false;
             SaveButton3.IsVisible = false;
         }
-        else if (CheckIsLoadGamePageOn == false) { 
+        else if (CheckIsLoadGamePageOn == false)
+        {
             Loadgame_label.IsVisible = false;
             Savegame_label.IsVisible = true;
             PlayButton1.IsVisible = false;
             PlayButton2.IsVisible = false;
             PlayButton3.IsVisible = false;
-
         }
-        UpdateSave();
     }
+
+    // Update the save game status
     private async void UpdateSave()
     {
-        Console.WriteLine(App.CombinedVM.UserSaveGames.saveGames[0].isSave);
-        Console.WriteLine(App.CombinedVM.UserSaveGames.saveGames[1].isSave);
-        Console.WriteLine(App.CombinedVM.UserSaveGames.saveGames[2].isSave);
-
         var saveGames = App.CombinedVM.UserSaveGames.saveGames;
-
         if (saveGames.Count < 3)
         {
-            Console.WriteLine("❌ ไม่พบข้อมูล SaveGames ครบ 3 ช่อง");
             return;
         }
-
-        // อาร์เรย์ของ Grid และ NoLoad ที่จับคู่กัน
         var gridLoads = new[] { GridLoad1, GridLoad2, GridLoad3 };
         var noLoads = new[] { NoLoad1, NoLoad2, NoLoad3 };
         if (CheckIsLoadGamePageOn == true)
         {
             for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Slot {i + 1} isSave = {saveGames[i].isSave}");
-
                 if (saveGames[i].isSave == "Yes")
                 {
                     gridLoads[i].IsVisible = true;
@@ -74,20 +71,13 @@ public partial class LoadAndSaveGamePage : ContentPage
                 }
             }
         }
- 
-
-        Console.WriteLine("wowopacity22222222");
-        Console.WriteLine(CheckIsLoadGamePageOn);
-
         if (CheckIsLoadGamePageOn == false)
         {
-            Console.WriteLine("wowopacity22222222");
             for (int i = 0; i < 3; i++)
             {
                 if (saveGames[i].isSave == "No")
                 {
                     gridLoads[i].Opacity = 0.5;
-
                 }
                 else
                 {
@@ -96,14 +86,22 @@ public partial class LoadAndSaveGamePage : ContentPage
                 noLoads[i].IsVisible = false;
             }
         }
+        SaveUserDataToDatabase();
+    }
 
-        SaveGameDBHelper.Instance.InitAsync();
+    // Save the user data to the database
+    private void SaveUserDataToDatabase()
+    {
+        SavedSessionDBHelper.Instance.InitAsync();
+        var saveGames = App.CombinedVM.UserSaveGames.saveGames;
         foreach (var save in saveGames)
         {
-            SaveGameDBHelper.Instance.SaveNoteAsync(save);
+            SavedSessionDBHelper.Instance.SaveDataAsync(save);
         }
-        Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
     }
+
+
+    // Button Clicked
     private void BackButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -125,6 +123,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         // Navigate back to the previous page
         await Navigation.PopAsync();
     }
+
 
     // Sound effect
     private async Task PlaySoundAsync(string fileName, double volume)
@@ -161,11 +160,11 @@ public partial class LoadAndSaveGamePage : ContentPage
         UpdateSave();
 
 
-        SaveGameDBHelper.Instance.InitAsync();
+        SavedSessionDBHelper.Instance.InitAsync();
         var saveGames = App.CombinedVM.UserSaveGames.saveGames;
         foreach (var save in saveGames)
         {
-            SaveGameDBHelper.Instance.SaveNoteAsync(save);
+            SavedSessionDBHelper.Instance.SaveDataAsync(save);
         }
         Console.WriteLine("💾 [App] บันทึกข้อมูลทั้งหมดก่อนออกแอป");
     }

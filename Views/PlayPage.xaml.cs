@@ -53,8 +53,8 @@ public partial class PlayPage : ContentPage
         // Change the grid size of the row
         ChangeGridSizeBack();
 
-        // Navigate to the PlayPage
-        //await Navigation.PushAsync(new Views.PlayPage());
+        // Navigate to the StroyPage
+        await Navigation.PushAsync(new Views.StoryPage());
     }
 
 
@@ -86,8 +86,6 @@ public partial class PlayPage : ContentPage
         // Change the grid size of the row
         ChangeGridSizeBack();
 
-        // Navigate to the PlayPage
-        await Navigation.PushAsync(new Views.LoadAndSaveGamePage(false));
     }
 
 

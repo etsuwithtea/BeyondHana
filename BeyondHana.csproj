@@ -53,6 +53,7 @@
 		<MauiImage Include="Resources\Images\BG\*" />
 		<MauiImage Include="Resources\Images\Button\*" />
 		<MauiImage Include="Resources\Images\LabelText\*" />
+		<MauiImage Include="Resources\Images\Character\*" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -87,6 +88,9 @@
 	  <MauiXaml Update="Views\SettingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\StoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TitlePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -94,6 +98,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\Images\LabelText\" />
+	  <Folder Include="Resources\Images\Character\" />
 	</ItemGroup>
 
 </Project>

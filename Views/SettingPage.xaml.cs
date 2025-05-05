@@ -22,12 +22,12 @@ public partial class SettingPage : ContentPage
         var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
 
-        if (setting.Textsize == 10)
+        if (setting.Textsize == 14)
         {
             SmallText_CheckBox.Source = "checkbox_2.png";
             NormalText_CheckBox.Source = "checkbox_1.png";
         }
-        else if (setting.Textsize == 14)
+        else if (setting.Textsize == 18)
         {
             SmallText_CheckBox.Source = "checkbox_1.png";
             NormalText_CheckBox.Source = "checkbox_2.png";
@@ -44,7 +44,7 @@ public partial class SettingPage : ContentPage
 
         //App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_imhere.wav", setting.Backgroundmusicpercent);
         // Set the text size to small
-        setting.Textsize = 10;
+        setting.Textsize = 14;
         SmallText_CheckBox.Source = "checkbox_2.png";
         NormalText_CheckBox.Source = "checkbox_1.png";  
     }
@@ -55,7 +55,7 @@ public partial class SettingPage : ContentPage
         if (setting == null) return;
         PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         // Set the text size to normal
-        setting.Textsize = 14;
+        setting.Textsize = 18;
         SmallText_CheckBox.Source = "checkbox_1.png";
         NormalText_CheckBox.Source = "checkbox_2.png";
     }
