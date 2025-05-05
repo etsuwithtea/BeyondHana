@@ -62,11 +62,11 @@ public partial class StoryPage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        // Navigate to the PlayPage
+        // Navigate to the Load and Save Game page
         await Navigation.PushAsync(new Views.LoadAndSaveGamePage(false));
     }
 
-    private async void InventoryButton_Clicked(object sender, EventArgs e)
+    private async void HomeButton_Clicked(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
@@ -75,6 +75,9 @@ public partial class StoryPage : ContentPage
         await button.ScaleTo(1.05, 150, Easing.CubicInOut);
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        // Navigate to the tile page
+        await Navigation.PushAsync(new Views.TitlePage());
     }
 
     // Sound effect
