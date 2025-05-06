@@ -1,10 +1,15 @@
 ﻿using BeyondHana.Data;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using System.Threading;
+using System.Threading.Tasks;
 namespace BeyondHana.Views;
 
 public partial class LoadAndSaveGamePage : ContentPage
 {
     private bool CheckIsLoadGamePageOn;
-	public LoadAndSaveGamePage(bool Check)
+    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    public LoadAndSaveGamePage(bool Check)
 	{
 		InitializeComponent();
         BackButton.Pressed += BackButton_Pressed;
@@ -59,7 +64,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         {
             for (int i = 0; i < 3; i++)
             {
-                if (saveGames[i].isSave == "Yes")
+                if (saveGames[i].current_event_id != 999999) // if have event next
                 {
                     gridLoads[i].IsVisible = true;
                     noLoads[i].IsVisible = false;
@@ -75,7 +80,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         {
             for (int i = 0; i < 3; i++)
             {
-                if (saveGames[i].isSave == "No")
+                if (saveGames[i].current_event_id == 999999)
                 {
                     gridLoads[i].Opacity = 0.5;
                 }
@@ -92,11 +97,11 @@ public partial class LoadAndSaveGamePage : ContentPage
     // Save the user data to the database
     private void SaveUserDataToDatabase()
     {
-        SavedSessionDBHelper.Instance.InitAsync();
+        SaveGameDBHelper.Instance.InitAsync();
         var saveGames = App.CombinedVM.UserSaveGames.saveGames;
         foreach (var save in saveGames)
         {
-            SavedSessionDBHelper.Instance.SaveDataAsync(save);
+            SaveGameDBHelper.Instance.SaveDataAsync(save);
         }
     }
 
@@ -107,7 +112,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "back2_label.png";
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);    
 
     }
     private async void BackButton_Released(object sender, EventArgs e)
@@ -127,7 +132,7 @@ public partial class LoadAndSaveGamePage : ContentPage
 
     // Sound effect
     private async Task PlaySoundAsync(string fileName, double volume)
-    {
+    {    
         var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
         if (player == null) return;
     }
@@ -142,7 +147,11 @@ public partial class LoadAndSaveGamePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        App.CombinedVM.UserSaveGames.saveGames[0].isSave = "No";
+        // Delete save game 
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[0];
+        savegame.current_event_id = 999999;
+        savegame.updated_at = null;
+        savegame.created_at = null; 
         UpdateSave();
     }
 
@@ -156,7 +165,11 @@ public partial class LoadAndSaveGamePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        App.CombinedVM.UserSaveGames.saveGames[1].isSave = "No";
+        // Delete save game
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[1];
+        savegame.current_event_id = 999999;
+        savegame.updated_at = null;
+        savegame.created_at = null;
         UpdateSave();
 
     }
@@ -171,7 +184,11 @@ public partial class LoadAndSaveGamePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        App.CombinedVM.UserSaveGames.saveGames[2].isSave = "No";
+        // Delete save game
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[2];
+        savegame.current_event_id = 999999;
+        savegame.updated_at = null;
+        savegame.created_at = null;
         UpdateSave();
     }
 
@@ -185,7 +202,31 @@ public partial class LoadAndSaveGamePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        App.CombinedVM.UserSaveGames.saveGames[0].isSave = "Yes";
+        // Save game
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[0];
+        savegame.current_event_id = 0;
+
+        ToastDuration duration = ToastDuration.Short;
+        if (savegame.current_event_id != 999999)
+        {
+         
+            if (savegame.created_at == null)
+            {
+                savegame.created_at = DateTime.Now;
+
+                var toast = Toast.Make($"Save แล้วนะ เวลา : {savegame.created_at}", duration, 14);
+                await toast.Show(cancellationTokenSource.Token);
+
+            }
+            else
+            {
+                savegame.updated_at = DateTime.Now;
+           
+                var toast = Toast.Make($"Save แล้วแต่ทับอันเดิมนะ เวลา : {savegame.updated_at}", duration, 14);
+                await toast.Show(cancellationTokenSource.Token);
+            }
+            savegame.updated_at = DateTime.Now;
+        }   
         UpdateSave();
     }
 
@@ -199,9 +240,32 @@ public partial class LoadAndSaveGamePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        App.CombinedVM.UserSaveGames.saveGames[1].isSave = "Yes";
-        UpdateSave();
+        // Save game
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[1];
+        savegame.current_event_id = 0;
 
+        ToastDuration duration = ToastDuration.Short;
+        if (savegame.current_event_id != 999999)
+        {
+
+            if (savegame.created_at == null)
+            {
+                savegame.created_at = DateTime.Now;
+
+                var toast = Toast.Make($"Save แล้วนะ เวลา : {savegame.created_at}", duration, 14);
+                await toast.Show(cancellationTokenSource.Token);
+
+            }
+            else
+            {
+                savegame.updated_at = DateTime.Now;
+
+                var toast = Toast.Make($"Save แล้วแต่ทับอันเดิมนะ เวลา : {savegame.updated_at}", duration, 14);
+                await toast.Show(cancellationTokenSource.Token);
+            }
+            savegame.updated_at = DateTime.Now;
+        }
+        UpdateSave();
     }
 
     private async void SaveButton3_Clicked(object sender, EventArgs e)
@@ -214,8 +278,129 @@ public partial class LoadAndSaveGamePage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
-        App.CombinedVM.UserSaveGames.saveGames[2].isSave = "Yes";
-        UpdateSave();
+        //  Save game
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[2];
+        savegame.current_event_id = 0;
 
+        ToastDuration duration = ToastDuration.Short;
+        if (savegame.current_event_id != 999999)
+        {
+
+            if (savegame.created_at == null)
+            {
+                savegame.created_at = DateTime.Now;
+
+                var toast = Toast.Make($"Save แล้วนะ เวลา : {savegame.created_at}", duration, 14);
+                await toast.Show(cancellationTokenSource.Token);
+
+            }
+            else
+            {
+                savegame.updated_at = DateTime.Now;
+
+                var toast = Toast.Make($"Save แล้วแต่ทับอันเดิมนะ เวลา : {savegame.updated_at}", duration, 14);
+                await toast.Show(cancellationTokenSource.Token);
+            }
+            savegame.updated_at = DateTime.Now;
+        }
+        UpdateSave(); ;
+
+    }
+
+    // save game slot 1 tapped
+    private async void saveslot1_label_Tapped(object sender, TappedEventArgs e)
+    {
+        // Animation Clicked
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[0];
+        if (savegame.current_event_id != 999999)
+        {
+            if (sender is Grid grid)
+            {
+                grid.IsEnabled = false;
+
+                try
+                {
+                    await grid.ScaleTo(0.85, 100, Easing.CubicOut);
+                    await grid.ScaleTo(1.05, 100, Easing.CubicInOut);
+
+                    await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
+                    await grid.ScaleTo(1.0, 100, Easing.SpringOut);
+
+
+                    ToastDuration duration = ToastDuration.Short;
+                    var toast = Toast.Make($"คุณ save ครั้งล่าสุดเมื่อ : {savegame.updated_at}", duration, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+                finally
+                {
+                    grid.IsEnabled = true;
+                }
+            }
+        }       
+    }
+    // save game slot 2 tapped
+    private async void saveslot2_label_Tapped(object sender, TappedEventArgs e)
+    {
+        // Animation Clicked
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[1];
+        if (savegame.current_event_id != 999999)
+        {
+            if (sender is Grid grid)
+            {
+                grid.IsEnabled = false;
+
+                try
+                {
+                    await grid.ScaleTo(0.85, 100, Easing.CubicOut);
+                    await grid.ScaleTo(1.05, 100, Easing.CubicInOut);
+
+                    await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
+                    await grid.ScaleTo(1.0, 100, Easing.SpringOut);
+
+
+                    ToastDuration duration = ToastDuration.Short;
+                    var toast = Toast.Make($"คุณ save ครั้งล่าสุดเมื่อ : {savegame.updated_at}", duration, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+                finally
+                {
+                    grid.IsEnabled = true;
+                }
+            }
+        }
+    }
+    // save game slot 3 tapped
+    private async void saveslot3_label_Tapped(object sender, TappedEventArgs e)
+    {
+        // Animation Clicked
+        var savegame = App.CombinedVM.UserSaveGames.saveGames[2];
+        if (savegame.current_event_id != 999999)
+        {
+            if (sender is Grid grid)
+            {
+                grid.IsEnabled = false;
+
+                try
+                {
+                    await grid.ScaleTo(0.85, 100, Easing.CubicOut);
+                    await grid.ScaleTo(1.05, 100, Easing.CubicInOut);
+
+                    await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
+                    await grid.ScaleTo(1.0, 100, Easing.SpringOut);
+
+
+                    ToastDuration duration = ToastDuration.Short;
+                    var toast = Toast.Make($"คุณ save ครั้งล่าสุดเมื่อ : {savegame.updated_at}", duration, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+                finally
+                {
+                    grid.IsEnabled = true;
+                }
+            }
+        }
     }
 }

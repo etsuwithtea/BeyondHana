@@ -3,21 +3,20 @@ using BeyondHana.Models;
 
 namespace BeyondHana.Data
 {
-    public class SavedSessionDBHelper
+    public class SaveGameDBHelper
     {
-        private static SavedSessionDBHelper _instance;
-        public static SavedSessionDBHelper Instance => _instance ??= new SavedSessionDBHelper();
+        private static SaveGameDBHelper _instance;
+        public static SaveGameDBHelper Instance => _instance ??= new SaveGameDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
-        public SavedSessionDBHelper()
+        public SaveGameDBHelper()
         {
-            var dbFileName = "UserSaveGamesDB.db";
+            var dbFileName = "SaveGame.db";
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, dbFileName);
 
-            // // delete old db file if exists
+            //// delete old db file if exists
             //if (File.Exists(dbPath))
             //{
-            //    Console.WriteLine("❌ [DB] พบฐานข้อมูลเก่า -> กำลังลบ");
             //    File.Delete(dbPath);
             //}
 
@@ -36,30 +35,30 @@ namespace BeyondHana.Data
         // Create table if not exists
         public async Task InitAsync()
         {
-            await _dbConnection.CreateTableAsync<SavedSession>();
+            await _dbConnection.CreateTableAsync<SaveGame>();
         }
 
         // Get data from database in file directory
-        public async Task<List<SavedSession>> GetDatasAsync()
+        public async Task<List<SaveGame>> GetDatasAsync()
         {
             try
             {
-                var list = await _dbConnection.Table<SavedSession>().ToListAsync();
+                var list = await _dbConnection.Table<SaveGame>().ToListAsync();
                 return list;
             }
             catch (Exception ex)
             {
                 //Console.WriteLine(ex.Message);
-                return new List<SavedSession>();
+                return new List<SaveGame>();
             }
         }
 
         // Save data to database in file directory
-        public async Task<int> SaveDataAsync(SavedSession save)
+        public async Task<int> SaveDataAsync(SaveGame save)
         {
             int result;
 
-            if (save.ID != 0)
+            if (save.save_id != 0)
             {
                 result = await _dbConnection.UpdateAsync(save);
             }

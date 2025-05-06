@@ -12,7 +12,14 @@
 
             <Image x:Name="NoLoad1" Source="noslotsave_label.png" Grid.Row="2" Grid.ColumnSpan="7" HorizontalOptions="Center" WidthRequest="350"/>
             <Grid x:Name="GridLoad1" Grid.Row="2" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,*,*" >
-                <Image Source="saveslot1_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+
+                <Grid Grid.Column="0">
+                    <Image Source="saveslot1_label.png"  HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="saveslot1_label_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                
                 <ImageButton x:Name="PlayButton1" Source="playicon_button.png" Grid.Column="1"  HeightRequest="50" WidthRequest="75" HorizontalOptions="Center"/>
                 <ImageButton x:Name="SaveButton1" Source="saveicon_button.png" Grid.Column="1"  HeightRequest="50" WidthRequest="75"  Clicked="SaveButton1_Clicked" HorizontalOptions="Center"/>
                 <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75" Clicked="DeleteButton1_Clicked" HorizontalOptions="Center"/>
@@ -20,7 +27,14 @@
 
             <Image x:Name="NoLoad2" Source="noslotsave_label.png" Grid.Row="3" Grid.ColumnSpan="7" HorizontalOptions="Center" WidthRequest="350"/>
             <Grid x:Name="GridLoad2" Grid.Row="3" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,*,*" >
-                <Image Source="saveslot2_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                
+                <Grid Grid.Column="0">
+                    <Image Source="saveslot2_label.png"  HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="saveslot2_label_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                
                 <ImageButton x:Name="PlayButton2" Source="playicon_button.png" Grid.Column="1"  HeightRequest="50" WidthRequest="75" HorizontalOptions="Center"/>
                 <ImageButton x:Name="SaveButton2" Source="saveicon_button.png" Grid.Column="1"  HeightRequest="50" WidthRequest="75" Clicked="SaveButton2_Clicked" HorizontalOptions="Center"/>
                 <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75" Clicked="DeleteButton2_Clicked" HorizontalOptions="Center"/>
@@ -28,7 +42,14 @@
 
             <Image x:Name="NoLoad3" Source="noslotsave_label.png" Grid.Row="4" Grid.ColumnSpan="7" HorizontalOptions="Center" WidthRequest="350"/>
             <Grid x:Name="GridLoad3" Grid.Row="4" Grid.ColumnSpan="7" HorizontalOptions="Center" ColumnDefinitions="*,*,*" >
-                <Image Source="saveslot3_label.png" Grid.Column="0" HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+
+                <Grid Grid.Column="0">
+                    <Image Source="saveslot3_label.png"  HeightRequest="55" WidthRequest="270" Margin="0,0,20,0"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="saveslot3_label_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+                
                 <ImageButton x:Name="PlayButton3" Source="playicon_button.png" Grid.Column="1"  HeightRequest="50" WidthRequest="75" HorizontalOptions="Center"/>
                 <ImageButton x:Name="SaveButton3" Source="saveicon_button.png" Grid.Column="1"  HeightRequest="50" WidthRequest="75" Clicked="SaveButton3_Clicked"  HorizontalOptions="Center"/>
                 <ImageButton Source="deleteicon_button.png" Grid.Column="2"  WidthRequest="75" Clicked="DeleteButton3_Clicked" HorizontalOptions="Center"/>

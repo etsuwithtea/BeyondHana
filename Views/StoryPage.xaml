@@ -9,10 +9,10 @@
             <Image Source="academic_corridor3_blur.png" x:Name="Background" Aspect="Fill" Grid.ColumnSpan="5" Grid.RowSpan="5"/>
             <Image Source="hana.png" x:Name="Character" Grid.ColumnSpan="5" Grid.RowSpan="5" HeightRequest="400" VerticalOptions="End"/>
 
-            <Grid ColumnDefinitions="*,*,*" Grid.Row="0" Grid.Column="0" ColumnSpacing="1" HorizontalOptions="Center">
+            <Grid ColumnDefinitions="*,*,*" Grid.Row="0" Grid.Column="0" ColumnSpacing="1" HorizontalOptions="Center" Margin="10,0,0,0">
                 <ImageButton Source="settingicon_button.png" x:Name="SettingButton" Grid.Column="0" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" Clicked="SettingButton_Clicked"/>
                 <ImageButton Source="saveicon_button.png" x:Name="SaveButton"  Grid.Column="1" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Center" Clicked="SaveButton_Clicked"/>
-                <ImageButton Source="homeicon_button.png" x:Name="HomeButton"  Grid.Column="2" HeightRequest="50" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HomeButton_Clicked"/>
+                <ImageButton Source="homeicon_button.png" x:Name="HomeButton"  Grid.Column="2" HeightRequest="45" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HomeButton_Clicked"/>
             </Grid>
 
             <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5">

@@ -5,14 +5,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace BeyondHana.ViewModels
 {
-    public  partial class SavedSessionVM : ObservableObject
+    public  partial class SaveGameVM : ObservableObject
     {
-        private readonly SavedSessionDBHelper _databaseHelper = SavedSessionDBHelper.Instance;
-        public ObservableCollection<SavedSession> saveGames { get; set; }
+        private readonly SaveGameDBHelper _databaseHelper = SaveGameDBHelper.Instance;
+        public ObservableCollection<SaveGame> saveGames { get; set; }
 
-        public SavedSessionVM()
+        public SaveGameVM()
         {
-            saveGames = new ObservableCollection<SavedSession>();
+            saveGames = new ObservableCollection<SaveGame>();
             LoadSaves();      
         }
 
