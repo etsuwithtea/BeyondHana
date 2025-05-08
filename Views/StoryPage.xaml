@@ -62,10 +62,10 @@
                              x:Name="NextButton"/>
             </Grid>
 
-            <Grid x:Name="IsChoiceDialogue" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="4" RowDefinitions="*,*,*,*,*" Margin="30,0,30,0" RowSpacing="10">
+            <Grid x:Name="IsChoiceDialogue" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="4" RowDefinitions="0.5*,*,*,*,0.5*" Margin="30,0,30,0" RowSpacing="15">
 
                 <!-- Title -->
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" HeightRequest="90" Margin="10,10,10,10">
                     <!--transparent layer for the background-->
                     <Border BackgroundColor="Black" Margin="40,0,80,0" Opacity="0.5" StrokeThickness="0">
                         <Border.StrokeShape>
@@ -84,15 +84,15 @@
                 </Grid>
 
                 <!-- choice 1-->
-                <Grid Grid.Row="2" HeightRequest="90">
+                <Grid Grid.Row="2"  HeightRequest="95" Margin="10,10,10,10">
                     <!--transparent layer for the background-->
                     <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="40,40,40,40 "/>
-                        </Border.StrokeShape>
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TextChoice1_Tapped"/>
-                        </Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="40,40,40,40 "/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TextChoice1_Tapped"/>
+                    </Border.GestureRecognizers>
                     </Border>
 
                     <!-- transparent layer for the text-->
@@ -103,15 +103,15 @@
                                     <TapGestureRecognizer Tapped="ScrollViewTextChoice1_Tapped" />
                                 </ScrollView.GestureRecognizers>
                                 <Label Text="NoText" x:Name="TextChoice1" TextColor="Black" FontFamily="ItimRegular"
-                           LineBreakMode="WordWrap" FontAttributes="Bold"
-                           FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
+                                       LineBreakMode="WordWrap" FontAttributes="Bold"
+                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
                             </ScrollView>
                         </Grid>
                     </Grid>
                 </Grid>
 
                 <!-- choice 2-->
-                <Grid Grid.Row="3" HeightRequest="90">
+                <Grid Grid.Row="3" HeightRequest="95" Margin="10,10,10,10" >
                     <!--transparent layer for the background-->
                     <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
                         <Border.StrokeShape>
@@ -130,8 +130,8 @@
                                     <TapGestureRecognizer Tapped="ScrollViewTextChoice2_Tapped" />
                                 </ScrollView.GestureRecognizers>
                                 <Label Text="NoText" x:Name="TextChoice2" TextColor="Black" FontFamily="ItimRegular"
-                           LineBreakMode="WordWrap" FontAttributes="Bold"
-                           FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
+                                       LineBreakMode="WordWrap" FontAttributes="Bold"
+                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
                             </ScrollView>
                         </Grid>
                     </Grid>
