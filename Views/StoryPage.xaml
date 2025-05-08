@@ -15,7 +15,7 @@
                 <ImageButton Source="homeicon_button.png" x:Name="HomeButton"  Grid.Column="2" HeightRequest="45" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HomeButton_Clicked"/>
             </Grid>
 
-            <Grid Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5">
+            <Grid x:Name="IsNormalDialogue" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5" RowSpacing="10">
                 <Border BackgroundColor="white" Margin="80,30,80,0" Opacity="0.5" StrokeThickness="0" >
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10,10,0,0" />
@@ -28,6 +28,62 @@
                 </Border>
                 <Image Source="hana_label.png" x:Name="WhoSpeak"  Grid.ColumnSpan="5" Grid.RowSpan="6" HeightRequest="50" HorizontalOptions="Start" VerticalOptions="Start" Margin="40,0,0,0"/>
                 <ImageButton Source="storynext2_button.png" Grid.Row="4" Grid.ColumnSpan="5" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,30,0" HeightRequest="25" WidthRequest="90"  x:Name="NextButton"/>
+            </Grid>
+
+            <Grid x:Name="IsChoiceDialogue" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan ="4" RowDefinitions="*,*,*,*,*" Margin="30,0,30,0" RowSpacing="10">
+                <Grid Grid.Row="1">
+                    <Border BackgroundColor="Black" Margin="40,0,80,0" Opacity="0.5" StrokeThickness="0" >
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15,15,15,15" />
+                        </Border.StrokeShape>
+                        <Grid Margin="30,20,30,20" HorizontalOptions="Center" VerticalOptions="Center" >
+                            <ScrollView Orientation="Vertical">
+                                <Label Text="NoText" x:Name="TextTitle" TextColor="White" FontFamily="ItimRegular" LineBreakMode="WordWrap" FontAttributes="Bold" FontSize="20" />
+                            </ScrollView>
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" HeightRequest="90">
+                    <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="50,50,50,50"  />
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TextChoice1_Tapped"/>
+                        </Border.GestureRecognizers>
+                        <Grid Margin="30,20,30,20"  >
+                            <ScrollView Orientation="Vertical"  HorizontalOptions="Center" VerticalOptions="Center">
+                                <ScrollView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ScrollViewTextChoice1_Tapped" />
+                                </ScrollView.GestureRecognizers>
+                                <Label Text="NoText" x:Name="TextChoice1" TextColor="Black" FontFamily="ItimRegular" LineBreakMode="WordWrap" FontAttributes="Bold" FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
+                            </ScrollView>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="3" HeightRequest="90">
+                    <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0" >
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="50,50,50,50" />
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TextChoice2_Tapped"/>
+                        </Border.GestureRecognizers>
+                        <Grid Margin="30,20,30,20"  >
+                            <ScrollView Orientation="Vertical"  HorizontalOptions="Center" VerticalOptions="Center" >
+                                <ScrollView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ScrollViewTextChoice2_Tapped" />
+                                </ScrollView.GestureRecognizers>
+                                <Label Text="NoText" x:Name="TextChoice2" TextColor="Black" FontFamily="ItimRegular" LineBreakMode="WordWrap" FontAttributes="Bold" FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
+                            </ScrollView>
+                        </Grid>
+                    </Border>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TextChoice2_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
             </Grid>
         </Grid>
     </FlexLayout>

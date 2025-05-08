@@ -1,5 +1,8 @@
 using BeyondHana.ViewModels;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 
 namespace BeyondHana.Views;
 
@@ -14,6 +17,7 @@ public partial class StoryPage : ContentPage
         NextButton.Pressed += NextButton_Pressed;
         NextButton.Released += NextButton_Released;
 
+        IsNormalDialogue.IsVisible = true;
         LoadStory(currentChapter);
     }
     protected override void OnAppearing()
@@ -27,76 +31,143 @@ public partial class StoryPage : ContentPage
     {       
         currentChapter = chapter;
         Preferences.Set("ChapterProgress", currentChapter);
+        var story = App.CombinedVM.Story;
 
         if (currentChapter <= 24)
         {
-            var story = App.CombinedVM.Story;
-            Background.Source = story.backgrounds[story.events[story.dialogues[currentChapter].event_id - 1].background_id - 1].file_path;
-            TextContent.Text = story.dialogues[currentChapter].text;
-
-            if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
+            if (story.dialogues[currentChapter].is_choice == 1)
             {
-                if (currentChapter == 0)
+                IsNormalDialogue.IsVisible = false;
+                IsChoiceDialogue.IsVisible = true;
+                TextTitle.Text = story.dialogues[currentChapter].text;
+
+                //Console.WriteLine(story.choices.Where(x => x.dialogue_id == currentChapter + 1).Count());
+
+                if (story.dialogues[currentChapter].is_narration == 1)
                 {
-                    App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    var who = story.characters[story.dialogues[currentChapter].character_id - 1];
+                    Character.Source = who.file_path;
+                    Character.IsVisible = true;
+                    Character.HorizontalOptions = LayoutOptions.Start;
+                    Character.HeightRequest = 300;
                 }
-                else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+
+                if (story.choices.Where(x => x.dialogue_id == currentChapter + 1).Count() == 2)
                 {
-                    App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
+
+                    TextChoice1.Text = nextChoices[0].choice_text;
+                    TextChoice2.Text = nextChoices[1].choice_text;
+                    TextChoice2.IsVisible = true;
+                    TextChoice2.IsVisible = true;
+                }
+                else if (story.choices.Where(x => x.dialogue_id == currentChapter + 1).Count() == 1)
+                {
+                    var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
+                    TextChoice1.Text = nextChoices[0].choice_text;
+                    TextChoice2.IsVisible = true;
+                    TextChoice2.IsVisible = false;
+                }
+
+
+                if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
+                {
+                    if (currentChapter == 0)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
+                    else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
+                }
+                else
+                {
+                    if (currentChapter == 0)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
+                    else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
                 }
             }
-            else
+            else if (story.dialogues[currentChapter].is_choice == 0)
             {
-                if (currentChapter == 0)
+                IsNormalDialogue.IsVisible = true;
+                IsChoiceDialogue.IsVisible = false;
+
+                Background.Source = story.backgrounds[story.events[story.dialogues[currentChapter].event_id - 1].background_id - 1].file_path;
+                TextContent.Text = story.dialogues[currentChapter].text;
+
+                if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
                 {
-                    App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    if (currentChapter == 0)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
+                    else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
                 }
-                else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+                else
                 {
-                    App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    if (currentChapter == 0)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
+                    else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+                    {
+                        App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    }
                 }
-            }
 
 
-            if (story.dialogues[currentChapter].is_narration == 0)
-            {
-                Character.IsVisible = false;
-                WhoSpeak.Source = "subtitle_label.png";
-            }
-            if (story.dialogues[currentChapter].is_narration == 1)
-            {
-                var who = story.characters[story.dialogues[currentChapter].character_id - 1];
-                Character.Source = who.file_path;
-                Character.IsVisible = true;
+                if (story.dialogues[currentChapter].is_narration == 0)
+                {
+                    Character.IsVisible = false;
+                    WhoSpeak.Source = "subtitle_label.png";
+                }
+                if (story.dialogues[currentChapter].is_narration == 1)
+                {
+                    var who = story.characters[story.dialogues[currentChapter].character_id - 1];
+                    Character.Source = who.file_path;
+                    Character.HorizontalOptions = LayoutOptions.Center;
+                    Character.IsVisible = true;
+                    Character.HeightRequest = 400;
 
-                if (who.name == "Hana")
-                {
-                    WhoSpeak.Source = "hana_label.png";
+                    if (who.name == "Hana")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    if (who.name == "Akira")
+                    {
+                        WhoSpeak.Source = "akira_label.png";
+                    }
+                    if (who.name == "Sakura")
+                    {
+                        WhoSpeak.Source = "sakura_label.png";
+                    }
+                    if (who.name == "Emi")
+                    {
+                        WhoSpeak.Source = "emi_label.png";
+                    }
+                    if (who.name == "Genji")
+                    {
+                        WhoSpeak.Source = "genji_label.png";
+                    }
+                    WhoSpeak.IsVisible = true;
                 }
-                if (who.name == "Akira")
-                {
-                    WhoSpeak.Source = "akira_label.png";
-                }
-                if (who.name == "Sakura")
-                {
-                    WhoSpeak.Source = "sakura_label.png";
-                }
-                if (who.name == "Emi")
-                {
-                    WhoSpeak.Source = "emi_label.png";
-                }
-                if (who.name == "Genji")
-                {
-                    WhoSpeak.Source = "genji_label.png";
-                }
-                WhoSpeak.IsVisible = true;
+
+
             }
         }
         else
         {
             await Navigation.PushAsync(new Views.Endpage());
         }
-        
     }
 
     private async void NextButton_Pressed(object sender, EventArgs e)
@@ -132,6 +203,7 @@ public partial class StoryPage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
+        // Navigate to the Setting page
         await Navigation.PushAsync(new Views.SettingPage());
     }
 
@@ -159,6 +231,7 @@ public partial class StoryPage : ContentPage
         await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         await button.ScaleTo(1.0, 150, Easing.SpringOut);
 
+        App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
         // Navigate to the tile page
         await Navigation.PushAsync(new Views.TitlePage());
     }
@@ -169,4 +242,114 @@ public partial class StoryPage : ContentPage
         var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
         if (player == null) return;
     }
+
+    private async void TextChoice1_Tapped(object sender, TappedEventArgs e)
+    {
+        var story = App.CombinedVM.Story;
+
+        if (sender is Border border)
+        {
+            border.IsEnabled = false;
+
+            try
+            {
+                await border.ScaleTo(0.85, 100, Easing.CubicOut);
+                await border.ScaleTo(1.05, 100, Easing.CubicInOut);
+                await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+                await border.ScaleTo(1.0, 100, Easing.SpringOut);
+
+                var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
+                currentChapter = nextChoices[0].next_dialogue_id - 1;
+                LoadStory(currentChapter);
+            }
+            finally
+            {
+                border.IsEnabled = true;
+            }
+        }
+    }
+
+    private async void TextChoice2_Tapped(object sender, TappedEventArgs e)
+    {
+        var story = App.CombinedVM.Story;
+
+        if (sender is Border border)
+        {
+            border.IsEnabled = false;
+
+            try
+            {
+                await border.ScaleTo(0.85, 100, Easing.CubicOut);
+                await border.ScaleTo(1.05, 100, Easing.CubicInOut);
+                await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+                await border.ScaleTo(1.0, 100, Easing.SpringOut);
+
+                var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
+                currentChapter = nextChoices[1].next_dialogue_id - 1;
+                LoadStory(currentChapter);
+            }
+            finally
+            {
+                border.IsEnabled = true;
+            }
+        }
+    }
+
+
+    private async void ScrollViewTextChoice1_Tapped(object sender, TappedEventArgs e)
+    {
+        var story = App.CombinedVM.Story;
+
+        if (sender is ScrollView scrollView)
+        {
+            scrollView.IsEnabled = false;
+
+            try
+            {
+                // Animation: scale content 
+                await scrollView.ScaleTo(0.95, 100, Easing.CubicOut);
+                await scrollView.ScaleTo(1.05, 100, Easing.CubicInOut);
+                await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+                await scrollView.ScaleTo(1.0, 100, Easing.SpringOut);
+
+                // Logic: change story
+                var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
+                currentChapter = nextChoices[0].next_dialogue_id - 1;
+                LoadStory(currentChapter);
+            }
+            finally
+            {
+                scrollView.IsEnabled = true;
+            }
+        }
+    }
+
+    private async void ScrollViewTextChoice2_Tapped(object sender, TappedEventArgs e)
+    {
+        var story = App.CombinedVM.Story;
+
+        if (sender is ScrollView scrollView)
+        {
+            scrollView.IsEnabled = false;
+
+            try
+            {
+                // Animation: scale content 
+                await scrollView.ScaleTo(0.95, 100, Easing.CubicOut);
+                await scrollView.ScaleTo(1.05, 100, Easing.CubicInOut);
+                await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+                await scrollView.ScaleTo(1.0, 100, Easing.SpringOut);
+
+                // Logic: change story
+                var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
+                currentChapter = nextChoices[1].next_dialogue_id - 1;
+                LoadStory(currentChapter);
+            }
+            finally
+            {
+                scrollView.IsEnabled = true;
+            }
+        }
+    }
+
 }
