@@ -166,7 +166,6 @@ public partial class LoadAndSaveGamePage : ContentPage
         var button = sender as ImageButton;
         button.Source = "back2_label.png";
         PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);    
-
     }
     private async void BackButton_Released(object sender, EventArgs e)
     {
