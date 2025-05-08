@@ -28,7 +28,7 @@ public partial class LoadAndSaveGamePage : ContentPage
         UpdateSave();
     }
 
-    // 
+    // Is Visible Content
     private async void VisibleConfig()
     {
         var saveGames = App.CombinedVM.UserSaveGames.saveGames;
@@ -107,6 +107,60 @@ public partial class LoadAndSaveGamePage : ContentPage
 
 
     // Button Clicked
+    private async void PlayButton1_Clicked(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        // Soft Bounce Animation
+        await button.ScaleTo(0.85, 150, Easing.CubicOut);
+        await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        // Load game
+        var loadgame = App.CombinedVM.UserSaveGames.saveGames[0];
+        StoryPage.currentChapter = loadgame.current_event_id;
+
+        // Navigate to the StoryPage
+        await Navigation.PushAsync(new Views.StoryPage());
+    }
+
+    private async void PlayButton2_Clicked(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        // Soft Bounce Animation
+        await button.ScaleTo(0.85, 150, Easing.CubicOut);
+        await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        // Load game
+        var loadgame = App.CombinedVM.UserSaveGames.saveGames[1];
+        StoryPage.currentChapter = loadgame.current_event_id;
+
+        // Navigate to the StoryPage
+        await Navigation.PushAsync(new Views.StoryPage());
+    }
+
+    private async void PlayButton3_Clicked(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        // Soft Bounce Animation
+        await button.ScaleTo(0.85, 150, Easing.CubicOut);
+        await button.ScaleTo(1.05, 150, Easing.CubicInOut);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await button.ScaleTo(1.0, 150, Easing.SpringOut);
+
+        // Load game
+        var loadgame = App.CombinedVM.UserSaveGames.saveGames[2];
+        StoryPage.currentChapter = loadgame.current_event_id;
+
+        // Navigate to the StoryPage
+        await Navigation.PushAsync(new Views.StoryPage());
+    }
+
     private void BackButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -204,7 +258,7 @@ public partial class LoadAndSaveGamePage : ContentPage
 
         // Save game
         var savegame = App.CombinedVM.UserSaveGames.saveGames[0];
-        savegame.current_event_id = 0;
+        savegame.current_event_id = StoryPage.currentChapter;
 
         ToastDuration duration = ToastDuration.Short;
         if (savegame.current_event_id != 999999)
@@ -242,7 +296,7 @@ public partial class LoadAndSaveGamePage : ContentPage
 
         // Save game
         var savegame = App.CombinedVM.UserSaveGames.saveGames[1];
-        savegame.current_event_id = 0;
+        savegame.current_event_id = StoryPage.currentChapter;
 
         ToastDuration duration = ToastDuration.Short;
         if (savegame.current_event_id != 999999)
@@ -280,7 +334,7 @@ public partial class LoadAndSaveGamePage : ContentPage
 
         //  Save game
         var savegame = App.CombinedVM.UserSaveGames.saveGames[2];
-        savegame.current_event_id = 0;
+        savegame.current_event_id = StoryPage.currentChapter;
 
         ToastDuration duration = ToastDuration.Short;
         if (savegame.current_event_id != 999999)

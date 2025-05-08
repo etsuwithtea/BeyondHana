@@ -1,8 +1,13 @@
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using System.Threading;
+
 namespace BeyondHana.Views;
 
 public partial class PlayPage : ContentPage
 {
-	public PlayPage()
+    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    public PlayPage()
 	{
 		InitializeComponent();
 
@@ -53,7 +58,8 @@ public partial class PlayPage : ContentPage
         // Change the grid size of the row
         ChangeGridSizeBack();
 
-        // Navigate to the StroyPage
+        // Navigate to the StoryPage
+        StoryPage.currentChapter = 0;
         await Navigation.PushAsync(new Views.StoryPage());
     }
 
@@ -86,6 +92,18 @@ public partial class PlayPage : ContentPage
         // Change the grid size of the row
         ChangeGridSizeBack();
 
+        ToastDuration duration = ToastDuration.Short;
+        Console.WriteLine(Preferences.Get("ChapterProgress", 0));
+        if (Preferences.Get("ChapterProgress", 0) == 25)
+        {
+            var toast = Toast.Make("คุณไม่มีเกมที่เคยเล่นมาก่อนนะ", duration, 14);
+            await toast.Show(cancellationTokenSource.Token);
+        }
+        else
+        {
+            StoryPage.currentChapter = Preferences.Get("ChapterProgress", 0);
+            await Navigation.PushAsync(new Views.StoryPage());
+        }                    
     }
 
 

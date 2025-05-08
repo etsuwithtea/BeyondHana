@@ -6,7 +6,7 @@
     <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
 
         <Grid RowDefinitions="*,*,*,0.8*,0.8*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*,*,*,*,*">
-            <Image Source="clubroom.png" Aspect="Fill" Grid.RowSpan="9" Grid.ColumnSpan="10"/>
+            <Image Source="clubroom.png" Aspect="AspectFill" Grid.RowSpan="9" Grid.ColumnSpan="10"/>
             <Image Source="setting_label.png" Grid.Row="1" Grid.ColumnSpan="10" HeightRequest="55"/>
             <Image Source="volume_label.png" Grid.Row="2" Grid.Column="2"/>
             

@@ -79,6 +79,9 @@
 	  <MauiXaml Update="Views\ClosePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Endpage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -101,7 +104,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\Images\LabelText\" />
-	  <Folder Include="Resources\Images\Character\" />
 	</ItemGroup>
 
 </Project>

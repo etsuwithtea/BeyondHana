@@ -1,5 +1,6 @@
 ﻿using BeyondHana.ViewModels;
 using BeyondHana.Data;
+using BeyondHana.Views;
 namespace BeyondHana
 {
     public partial class App : Application
@@ -10,6 +11,7 @@ namespace BeyondHana
             InitializeComponent();
             CombinedVM = new CombinedVM();
             CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+            Preferences.Get("ChapterProgress", 0);
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
@@ -23,7 +25,7 @@ namespace BeyondHana
         {
             SaveUserDataToDatabase();
             CombinedVM.BGAudioPlayer.Stop();
-            
+            Preferences.Set("ChapterProgress", StoryPage.currentChapter);
         }
 
         // / This method is called when the application is resumed from sleep
@@ -33,6 +35,7 @@ namespace BeyondHana
 
             var setting = CombinedVM.UserSetting.SelectedSetting;
             CombinedVM.BGAudioPlayer.PlayAsync(Preferences.Get("currentBGAudioFile", "soundtrack_wait.wav"), setting.Backgroundmusicpercent);
+            Preferences.Get("ChapterProgress", 0);
         }
 
         private void SaveUserDataToDatabase()

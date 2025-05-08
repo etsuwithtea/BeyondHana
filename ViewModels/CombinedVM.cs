@@ -1,10 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeyondHana.ViewModels
 {
@@ -14,6 +9,8 @@ namespace BeyondHana.ViewModels
         public AudioPlayerVM AudioPlayer { get; set; } = new AudioPlayerVM();
         public BGAudioPlayerVM BGAudioPlayer { get; set; } = new BGAudioPlayerVM();
         public SaveGameVM UserSaveGames { get; set; } = new SaveGameVM();
+
+        public StoryVM Story { get; set; } = new StoryVM();
 
         // Constructor
         public CombinedVM()

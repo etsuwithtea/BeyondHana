@@ -5,7 +5,7 @@
              Title="ClosePage">
     <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
         <Grid RowDefinitions="0.8*,*,*,0.8*" ColumnDefinitions="*,*,*,*">
-            <Image Source="onclosebg.png" Aspect="Fill" Grid.RowSpan="4" Grid.ColumnSpan="4" />
+            <Image Source="onclosebg.png" Aspect="AspectFill" Grid.RowSpan="4" Grid.ColumnSpan="4" />
             <ImageButton Source="back2_button.png" x:Name="BackButton" Grid.Row ="1" Grid.Column="2" HeightRequest="70" WidthRequest="180"  HorizontalOptions="Center"  Margin="55,0,0,0"/>
             <ImageButton Source="close2_button.png" x:Name="CloseButton" Grid.Row ="2" Grid.Column="2" HeightRequest="70" WidthRequest="180" HorizontalOptions="Center" Margin="45,0,0,0"/>
         </Grid>

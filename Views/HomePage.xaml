@@ -15,7 +15,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Source="academic_corridor.png" Aspect="Fill" Grid.RowSpan="5" Grid.ColumnSpan="6"/>
+            <Image Source="academic_corridor.png" Aspect="AspectFill" Grid.RowSpan="5" Grid.ColumnSpan="6"/>
             <ImageButton Source="play2_button.png" x:Name="PlayButton" Grid.Row="1" Grid.Column="3" HeightRequest="65" WidthRequest="150"  HorizontalOptions="Center" Margin="45,0,0,0"/>
             <ImageButton Source="setting2_button.png" x:Name="SettingButton" Grid.Row="2" Grid.Column="3"  HeightRequest="65" WidthRequest="150"  HorizontalOptions="Center" Margin="75,0,0,0"/>
             <ImageButton Source="exit2_button.png" x:Name="ExitButton" Grid.Row="3" Grid.Column="3"  HeightRequest="50" WidthRequest="150" HorizontalOptions="Center" />
