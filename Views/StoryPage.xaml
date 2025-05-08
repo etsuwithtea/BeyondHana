@@ -88,7 +88,7 @@
                     <!--transparent layer for the background-->
                     <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="40,40,40,40 />
+                            <RoundRectangle CornerRadius="40,40,40,40 "/>
                         </Border.StrokeShape>
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TextChoice1_Tapped"/>
