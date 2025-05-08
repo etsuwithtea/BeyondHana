@@ -14,21 +14,22 @@ namespace BeyondHana.Data
             var dbFileName = "SaveGame.db";
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, dbFileName);
 
-            //// delete old db file if exists
+            //delete old db file if exists
             //if (File.Exists(dbPath))
-            //{
-            //    File.Delete(dbPath);
-            //}
+            //    {
+            //        File.Delete(dbPath);
+            //    }
 
             // Check if the database file exists in the AppDataDirectory
             if (!File.Exists(dbPath))
             {
-                using var stream = FileSystem.OpenAppPackageFileAsync(dbFileName).Result;
+                // สำคัญ: ต้องรอ async ให้เสร็จสมบูรณ์ก่อนสร้าง connection
+                using var stream = FileSystem.OpenAppPackageFileAsync(dbFileName).GetAwaiter().GetResult();
                 using var fileStream = File.Create(dbPath);
                 stream.CopyTo(fileStream);
             }
 
-            // Create a new SQLiteAsyncConnection
+            // create connection to the database
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
 
