@@ -5,8 +5,6 @@ using Plugin.Maui.Audio;
 
 public partial class TitlePage : ContentPage
 {
-    private IAudioManager audioManager = AudioManager.Current;
-    private IAudioPlayer player;
     public TitlePage()
 	{
 		InitializeComponent();

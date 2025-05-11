@@ -1,19 +1,16 @@
 ﻿using BeyondHana.Models;
 using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the BGM table.
     public class BGMDBHelper
     {
-        private static BGMDBHelper _instance;
+        private static BGMDBHelper? _instance;
         public static BGMDBHelper Instance => _instance ??= new BGMDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        // Constructor
         public BGMDBHelper()
         {
             var dbFileName = "BGM.db";
@@ -36,6 +33,8 @@ namespace BeyondHana.Data
             // Create a new SQLiteAsyncConnection
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
+
+        // This method creates the BGM table if it doesn't exist.
         public async Task<List<BGM>> GetDatasAsync()
         {
             try
@@ -45,7 +44,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<BGM>();
             }
         }

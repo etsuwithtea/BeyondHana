@@ -3,12 +3,14 @@ using SQLite;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the Character table.
     public class CharacterDBhelper
     {
-        private static CharacterDBhelper _instance;
+        private static CharacterDBhelper? _instance;
         public static CharacterDBhelper Instance => _instance ??= new CharacterDBhelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        // Constructor
         public CharacterDBhelper()
         {
             var dbFileName = "Characters.db";
@@ -31,6 +33,8 @@ namespace BeyondHana.Data
             // Create a new SQLiteAsyncConnection
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
+
+        // This method creates the Character table if it doesn't exist.
         public async Task<List<Character>> GetDatasAsync()
         {
             try
@@ -40,7 +44,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<Character>();
             }
         }

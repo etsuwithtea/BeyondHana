@@ -39,9 +39,10 @@ public partial class StoryPage : ContentPage
             {
                 IsNormalDialogue.IsVisible = false;
                 IsChoiceDialogue.IsVisible = true;
+
+                Background.Source = story.backgrounds[story.events[story.dialogues[currentChapter].event_id - 1].background_id - 1].file_path;
                 TextTitle.Text = story.dialogues[currentChapter].text;
 
-                //Console.WriteLine(story.choices.Where(x => x.dialogue_id == currentChapter + 1).Count());
 
                 if (story.dialogues[currentChapter].is_narration == 1)
                 {
@@ -160,7 +161,6 @@ public partial class StoryPage : ContentPage
                     }
                     WhoSpeak.IsVisible = true;
                 }
-
 
             }
         }

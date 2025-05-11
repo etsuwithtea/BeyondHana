@@ -3,12 +3,14 @@ using SQLite;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the Choice table.
     public class ChoiceDBHelper
     {
-        private static ChoiceDBHelper _instance;
+        private static ChoiceDBHelper? _instance;
         public static ChoiceDBHelper Instance => _instance ??= new ChoiceDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        // Constructor
         public ChoiceDBHelper()
         {
             var dbFileName = "Choice.db";
@@ -31,6 +33,8 @@ namespace BeyondHana.Data
             // Create a new SQLiteAsyncConnection
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
+
+        // This method creates the Choice table if it doesn't exist.
         public async Task<List<Choice>> GetDatasAsync()
         {
             try
@@ -40,7 +44,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<Choice>();
             }
         }

@@ -3,12 +3,14 @@ using SQLite;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the Background table.
     public class BackgroundDBHelper
     {
-        private static BackgroundDBHelper _instance;
+        private static BackgroundDBHelper? _instance;
         public static BackgroundDBHelper Instance => _instance ??= new BackgroundDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        // Constructor
         public BackgroundDBHelper()
         {
             var dbFileName = "Background.db";
@@ -31,6 +33,8 @@ namespace BeyondHana.Data
             // Create a new SQLiteAsyncConnection
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
+
+        // This method creates the Background table if it doesn't exist.
         public async Task<List<Background>> GetDatasAsync()
         {
             try
@@ -40,7 +44,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<Background>();
             }
         }

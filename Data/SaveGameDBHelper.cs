@@ -3,12 +3,14 @@ using BeyondHana.Models;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the SaveGame table.
     public class SaveGameDBHelper
     {
-        private static SaveGameDBHelper _instance;
+        private static SaveGameDBHelper? _instance;
         public static SaveGameDBHelper Instance => _instance ??= new SaveGameDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        // Constructor
         public SaveGameDBHelper()
         {
             var dbFileName = "SaveGame.db";
@@ -23,7 +25,6 @@ namespace BeyondHana.Data
             // Check if the database file exists in the AppDataDirectory
             if (!File.Exists(dbPath))
             {
-                // สำคัญ: ต้องรอ async ให้เสร็จสมบูรณ์ก่อนสร้าง connection
                 using var stream = FileSystem.OpenAppPackageFileAsync(dbFileName).GetAwaiter().GetResult();
                 using var fileStream = File.Create(dbPath);
                 stream.CopyTo(fileStream);
@@ -49,7 +50,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<SaveGame>();
             }
         }

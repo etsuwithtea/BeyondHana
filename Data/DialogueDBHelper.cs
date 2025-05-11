@@ -3,12 +3,14 @@ using SQLite;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the Dialogue table.
     public class DialogueDBHelper
     {
-        private static DialogueDBHelper _instance;
+        private static DialogueDBHelper? _instance;
         public static DialogueDBHelper Instance => _instance ??= new DialogueDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        //  Constructor
         public DialogueDBHelper()
         {
             var dbFileName = "Dialogues.db";
@@ -31,6 +33,8 @@ namespace BeyondHana.Data
             // Create a new SQLiteAsyncConnection
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
+
+        // This method creates the Dialogue table if it doesn't exist.
         public async Task<List<Dialogue>> GetDatasAsync()
         {
             try
@@ -40,7 +44,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<Dialogue>();
             }
         }

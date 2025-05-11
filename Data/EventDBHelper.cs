@@ -3,12 +3,14 @@ using SQLite;
 
 namespace BeyondHana.Data
 {
+    // This class is responsible for managing the SQLite database connection and performing CRUD operations on the Event table.
     public class EventDBHelper
     {
-        private static EventDBHelper _instance;
+        private static EventDBHelper? _instance;
         public static EventDBHelper Instance => _instance ??= new EventDBHelper();
         private SQLiteAsyncConnection _dbConnection;
 
+        // Constructor
         public EventDBHelper()
         {
             var dbFileName = "Event.db";
@@ -31,6 +33,8 @@ namespace BeyondHana.Data
             // Create a new SQLiteAsyncConnection
             _dbConnection = new SQLiteAsyncConnection(dbPath);
         }
+
+        // This method creates the Event table if it doesn't exist.
         public async Task<List<Event>> GetDatasAsync()
         {
             try
@@ -40,7 +44,7 @@ namespace BeyondHana.Data
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
                 return new List<Event>();
             }
         }
