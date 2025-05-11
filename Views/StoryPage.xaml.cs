@@ -32,7 +32,7 @@ public partial class StoryPage : ContentPage
         Preferences.Set("ChapterProgress", currentChapter);
         var story = App.CombinedVM.Story;
 
-        if (currentChapter <= 24)
+        if (currentChapter <= story.dialogues.Count - 1)
         {
             if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
             {

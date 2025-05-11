@@ -96,8 +96,7 @@ public partial class PlayPage : ContentPage
         ChangeGridSizeBack();
 
         ToastDuration duration = ToastDuration.Short;
-        Console.WriteLine(Preferences.Get("ChapterProgress", 0));
-        if (Preferences.Get("ChapterProgress", 0) == 25)
+        if (Preferences.Get("ChapterProgress", 0) == App.CombinedVM.Story.dialogues.Count)
         {
             var toast = Toast.Make("คุณไม่มีเกมที่เคยเล่นมาก่อนนะ กรุณา กด Newgame เพื่อเล่น", duration, 14);
             await toast.Show(cancellationTokenSource.Token);

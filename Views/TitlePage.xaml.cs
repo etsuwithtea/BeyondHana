@@ -33,55 +33,6 @@ public partial class TitlePage : ContentPage
 
         // Navigate to the HomePage
         await Navigation.PushAsync(new Views.HomePage());
-
-
-        //foreach (var item in App.CombinedVM.Story.backgrounds)
-        //{
-        //    Console.WriteLine(item.background_id);
-        //    Console.WriteLine(item.file_path);
-        //    Console.WriteLine(item.description);
-        //}
-
-        //foreach (var item in App.CombinedVM.Story.bgms)
-        //{
-        //    Console.WriteLine(item.bgm_id);
-        //    Console.WriteLine(item.file_path);
-        //    Console.WriteLine(item.description);
-        //}
-
-        //foreach (var item in App.CombinedVM.Story.characters)
-        //{
-        //    Console.WriteLine(item.character_id);
-        //    Console.WriteLine(item.name);
-        //    Console.WriteLine(item.file_path);           
-        //}
-
-        //foreach (var item in App.CombinedVM.Story.choices)
-        //{
-        //    Console.WriteLine(item.choice_id);
-        //    Console.WriteLine(item.event_id);
-        //    Console.WriteLine(item.choice_text);
-        //    Console.WriteLine(item.next_dialogue_id);
-        //    Console.WriteLine(item.dialogue_id);
-        //}
-
-        //foreach (var item in App.CombinedVM.Story.dialogues)
-        //{
-        //    Console.WriteLine(item.dialogue_id);
-        //    Console.WriteLine(item.event_id);
-        //    Console.WriteLine(item.chracter_id);
-        //    Console.WriteLine(item.text);
-        //    Console.WriteLine(item.is_narration);
-        //    Console.WriteLine(item.is_choice);
-        //}
-
-        //foreach (var item in App.CombinedVM.Story.events)
-        //{
-        //    Console.WriteLine(item.event_id);
-        //    Console.WriteLine(item.background_id);
-        //    Console.WriteLine(item.content);
-        //    Console.WriteLine(item.bgm_id);
-        //}
     }
 
     // Sound effect
