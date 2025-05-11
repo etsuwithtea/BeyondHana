@@ -22,16 +22,16 @@ public partial class HomePage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
-    // Animation Clicked
-    private void PlayButton_Pressed(object sender, EventArgs e)
+    // Play button event handlers
+    private async void PlayButton_Pressed(object sender, EventArgs e)
     {
         var button = sender as ImageButton;
-        button.Source = "play1_button.png";
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        button.Source = "play1_button.png";      
         button.WidthRequest = 250;
         button.HeightRequest = 95;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
 
-        ChangeGridSizeRow1();
+        await ChangeGridSizeRow1();
     }
     private async void PlayButton_Released(object sender, EventArgs e)
     {
@@ -39,30 +39,30 @@ public partial class HomePage : ContentPage
 
         await button.ScaleTo(0.95, 100);
         await button.ScaleTo(1, 100);
-
         await Task.Delay(100);
 
         button.Source = "play2_button.png";
         button.WidthRequest = 150;
         button.HeightRequest = 65;
 
-        ChangeGridSizeBack();
+        await ChangeGridSizeBack();
 
         // Navigate to the PlayPage
         await Navigation.PushAsync(new Views.PlayPage());
     }
 
 
-    // Animation Clicked
-    private void SettingButton_Pressed(object sender, EventArgs e)
+    // Setting button event handlers
+    private async void SettingButton_Pressed(object sender, EventArgs e)
     {
         var button = sender as ImageButton;
         button.Source = "setting1_button.png";
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        
         button.WidthRequest = 250;
         button.HeightRequest = 85;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
 
-        ChangeGridSizeRow2();
+        await ChangeGridSizeRow2();
     }
     private async void SettingButton_Released(object sender, EventArgs e)
     {
@@ -70,30 +70,29 @@ public partial class HomePage : ContentPage
 
         await button.ScaleTo(0.95, 100);
         await button.ScaleTo(1, 100);
-
         await Task.Delay(100);
 
         button.Source = "setting2_button.png";
         button.WidthRequest = 150;
         button.HeightRequest = 65;
 
-        ChangeGridSizeBack();
+        await ChangeGridSizeBack();
 
         // Navigate to the SettingPage
         await Navigation.PushAsync(new Views.SettingPage());
     }
 
 
-    // Animation Clicked
-    private void ExitButton_Pressed(object sender, EventArgs e)
+    // Exit button event handlers
+    private async void ExitButton_Pressed(object sender, EventArgs e)
     {
         var button = sender as ImageButton;
-        button.Source = "exit1_button.png";
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        button.Source = "exit1_button.png";       
         button.WidthRequest = 250;
         button.HeightRequest = 75;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
 
-        ChangeGridSizeRow3();
+        await ChangeGridSizeRow3();
     }
     private async void ExitButton_Released(object sender, EventArgs e)
     {
@@ -108,7 +107,7 @@ public partial class HomePage : ContentPage
         button.WidthRequest = 150;
         button.HeightRequest = 50;
 
-        ChangeGridSizeBack();
+        await ChangeGridSizeBack();
 
         // Navigate to the ClosePage
         await Navigation.PushAsync(new Views.ClosePage());

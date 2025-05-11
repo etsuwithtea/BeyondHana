@@ -7,6 +7,7 @@ namespace BeyondHana.Views;
 public partial class PlayPage : ContentPage
 {
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    // Constructor
     public PlayPage()
 	{
 		InitializeComponent();
@@ -21,7 +22,7 @@ public partial class PlayPage : ContentPage
         BackButton.Pressed += BackButton_Pressed;
         BackButton.Released += BackButton_Released;
     }
-
+    // OnAppearing method
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -29,15 +30,16 @@ public partial class PlayPage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
-
-    private void NewGameButton_Pressed(object sender, EventArgs e)
+    // NewGame button event handlers
+    private async void NewGameButton_Pressed(object sender, EventArgs e)
     {   
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "NewGame1_button.png";
         button.WidthRequest = 230;
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        
         button.HeightRequest = 65;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
 
         // Change the grid size of the row
         ChangeGridSizeRow1();
@@ -63,18 +65,19 @@ public partial class PlayPage : ContentPage
         await Navigation.PushAsync(new Views.StoryPage());
     }
 
-
-    private void ContinueButton_Pressed(object sender, EventArgs e)
+    // Continue button event handlers
+    private async void ContinueButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "Continue1_button.png";
         button.WidthRequest = 230;
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
         button.HeightRequest = 65;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
 
         // Change the grid size of the row
-        ChangeGridSizeRow2();
+        await ChangeGridSizeRow2();
     }
     private async void ContinueButton_Released(object sender, EventArgs e)
     {
@@ -106,7 +109,7 @@ public partial class PlayPage : ContentPage
         }                    
     }
 
-
+    // LoadGame button event handlers
     private void LoadGameButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -132,19 +135,19 @@ public partial class PlayPage : ContentPage
         button.HeightRequest = 65;
 
         // Change the grid size of the row
-        ChangeGridSizeBack();
+        await ChangeGridSizeBack();
 
         // Navigate to the LoadAndSaveGamePage
         await Navigation.PushAsync(new Views.LoadAndSaveGamePage(true));
     }
 
 
-    private void BackButton_Pressed(object sender, EventArgs e)
+    private async void BackButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "back2_label.png";
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
     }
     private async void BackButton_Released(object sender, EventArgs e)
     {

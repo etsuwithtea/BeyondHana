@@ -2,7 +2,8 @@ namespace BeyondHana.Views;
 
 public partial class ClosePage : ContentPage
 {
-	public ClosePage()
+    // Constructor
+    public ClosePage()
 	{
 		InitializeComponent();
         // Set button events
@@ -11,6 +12,8 @@ public partial class ClosePage : ContentPage
         CloseButton.Pressed += CloseButton_Pressed;
         CloseButton.Released += CloseButton_Released;
     }
+
+    // Override OnAppearing to hide the navigation bar
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -18,15 +21,16 @@ public partial class ClosePage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
-
-    private void BackButton_Pressed(object sender, EventArgs e)
+    // back button event handlers
+    private async void BackButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "back1_button.png";
         button.WidthRequest = 275;
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 100;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        
 
     }
     private async void BackButton_Released(object sender, EventArgs e)
@@ -45,16 +49,15 @@ public partial class ClosePage : ContentPage
         await Navigation.PopAsync();
     }
 
-
-    private void CloseButton_Pressed(object sender, EventArgs e)
+    // close button event handlers
+    private async void CloseButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "close1_button.png";
         button.WidthRequest = 275;
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
         button.HeightRequest = 100;
-
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
     }
     private async void CloseButton_Released(object sender, EventArgs e)
     {

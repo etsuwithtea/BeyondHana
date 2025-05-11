@@ -1,4 +1,3 @@
-using BeyondHana.ViewModels;
 namespace BeyondHana.Views;
 public partial class SettingPage : ContentPage
 {
@@ -34,39 +33,39 @@ public partial class SettingPage : ContentPage
         }
     }
 
-
-    private void SmallTextCheckButton_Clicked(object sender, EventArgs e)
+    // Small and Normal Text Check Button Clicked
+    private async void SmallTextCheckButton_Clicked(object sender, EventArgs e)
     {
         // Get the selected setting
         var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
 
-        //App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_imhere.wav", setting.Backgroundmusicpercent);
         // Set the text size to small
         setting.Textsize = 14;
         SmallText_CheckBox.Source = "checkbox_2.png";
         NormalText_CheckBox.Source = "checkbox_1.png";  
     }
-    private void NormalTextCheckButton_Clicked(object sender, EventArgs e)
+    private async void NormalTextCheckButton_Clicked(object sender, EventArgs e)
     {
         // Get the selected setting
         var setting = App.CombinedVM.UserSetting.SelectedSetting;
         if (setting == null) return;
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
         // Set the text size to normal
         setting.Textsize = 18;
         SmallText_CheckBox.Source = "checkbox_1.png";
         NormalText_CheckBox.Source = "checkbox_2.png";
     }
 
-
-    private void BackButton_Pressed(object sender, EventArgs e)
+    // Backbutton event handlers
+    private async void BackButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
         var button = sender as ImageButton;
         button.Source = "back2_label.png";
-        PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
     }
     private async void BackButton_Released(object sender, EventArgs e)
     {

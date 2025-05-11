@@ -1,14 +1,11 @@
-using BeyondHana.ViewModels;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core;
-using Microsoft.Extensions.Logging;
-using System.Threading;
-
 namespace BeyondHana.Views;
 
 public partial class StoryPage : ContentPage
 {
+    // current chapter
     public static int currentChapter = 0;
+
+    // Constructor
     public StoryPage()
 	{
 		InitializeComponent();
@@ -20,6 +17,7 @@ public partial class StoryPage : ContentPage
         IsNormalDialogue.IsVisible = true;
         LoadStory(currentChapter);
     }
+    // OnAppearing method
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -27,6 +25,7 @@ public partial class StoryPage : ContentPage
         NavigationPage.SetHasNavigationBar(this, false);
     }
 
+    // Load the story
     private async void LoadStory(int chapter)
     {       
         currentChapter = chapter;
@@ -75,11 +74,11 @@ public partial class StoryPage : ContentPage
                 {
                     if (currentChapter == 0)
                     {
-                        App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                        await App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
                     }
                     else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
                     {
-                        App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                        await App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
                     }
                 }
                 else
@@ -170,6 +169,7 @@ public partial class StoryPage : ContentPage
         }
     }
 
+    // Next button event handlers
     private async void NextButton_Pressed(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -192,7 +192,7 @@ public partial class StoryPage : ContentPage
         LoadStory(currentChapter + 1);
     }
 
-
+    // Setting button event handlers
     private async void SettingButton_Clicked(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -207,6 +207,7 @@ public partial class StoryPage : ContentPage
         await Navigation.PushAsync(new Views.SettingPage());
     }
 
+    // Save button event handlers
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -221,6 +222,7 @@ public partial class StoryPage : ContentPage
         await Navigation.PushAsync(new Views.LoadAndSaveGamePage(false));
     }
 
+    // Home button event handlers
     private async void HomeButton_Clicked(object sender, EventArgs e)
     {
         // Animation Clicked
@@ -243,6 +245,7 @@ public partial class StoryPage : ContentPage
         if (player == null) return;
     }
 
+    // Choice button event handlers
     private async void TextChoice1_Tapped(object sender, TappedEventArgs e)
     {
         var story = App.CombinedVM.Story;
@@ -268,7 +271,6 @@ public partial class StoryPage : ContentPage
             }
         }
     }
-
     private async void TextChoice2_Tapped(object sender, TappedEventArgs e)
     {
         var story = App.CombinedVM.Story;
@@ -294,8 +296,6 @@ public partial class StoryPage : ContentPage
             }
         }
     }
-
-
     private async void ScrollViewTextChoice1_Tapped(object sender, TappedEventArgs e)
     {
         var story = App.CombinedVM.Story;

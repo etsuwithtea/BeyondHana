@@ -84,7 +84,7 @@
                 </Grid>
 
                 <!-- choice 1-->
-                <Grid Grid.Row="2"  HeightRequest="95" Margin="10,10,10,10">
+                <Grid Grid.Row="2" HeightRequest="85" Margin="10,10,10,10">
                     <!--transparent layer for the background-->
                     <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
                     <Border.StrokeShape>
@@ -96,22 +96,22 @@
                     </Border>
 
                     <!-- transparent layer for the text-->
-                    <Grid Margin="40,5,80,5">
-                        <Grid Margin="30,20,30,20">
-                            <ScrollView Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Grid Margin="40,0,80,0">
+                        <Grid Margin="30">
+                            <ScrollView Orientation="Horizontal"  >
                                 <ScrollView.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="ScrollViewTextChoice1_Tapped" />
                                 </ScrollView.GestureRecognizers>
-                                <Label Text="NoText" x:Name="TextChoice1" TextColor="Black" FontFamily="ItimRegular"
+                                <Label Text="Notext" x:Name="TextChoice1" TextColor="Black" FontFamily="ItimRegular"
                                        LineBreakMode="WordWrap" FontAttributes="Bold"
-                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
+                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" />
                             </ScrollView>
                         </Grid>
                     </Grid>
                 </Grid>
 
                 <!-- choice 2-->
-                <Grid Grid.Row="3" HeightRequest="95" Margin="10,10,10,10" >
+                <Grid Grid.Row="3" HeightRequest="85" Margin="10,10,10,10" >
                     <!--transparent layer for the background-->
                     <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
                         <Border.StrokeShape>
@@ -123,15 +123,15 @@
                     </Border>
 
                     <!-- transparent layer for the text-->
-                    <Grid Margin="40,5,80,5">
-                        <Grid Margin="30,20,30,20">
-                            <ScrollView Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Grid Margin="40,0,80,0">
+                        <Grid Padding="30" >
+                            <ScrollView Orientation="Horizontal">
                                 <ScrollView.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="ScrollViewTextChoice2_Tapped" />
                                 </ScrollView.GestureRecognizers>
                                 <Label Text="NoText" x:Name="TextChoice2" TextColor="Black" FontFamily="ItimRegular"
                                        LineBreakMode="WordWrap" FontAttributes="Bold"
-                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" InputTransparent="true"/>
+                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" />
                             </ScrollView>
                         </Grid>
                     </Grid>

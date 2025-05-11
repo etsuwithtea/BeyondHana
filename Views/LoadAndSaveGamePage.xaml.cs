@@ -223,7 +223,6 @@ public partial class LoadAndSaveGamePage : ContentPage
         savegame.updated_at = null;
         savegame.created_at = null;
         UpdateSave();
-
     }
 
     private async void DeleteButton3_Clicked(object sender, EventArgs e)
