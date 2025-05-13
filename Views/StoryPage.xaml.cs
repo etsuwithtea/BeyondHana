@@ -200,10 +200,8 @@ public partial class StoryPage : ContentPage
         var story = App.CombinedVM.Story;
         if (story.dialogues[currentChapter].dialogue_to != 0)
         {
-            //Console.WriteLine(story.dialogues[currentChapter].dialogue_to);
             currentChapter = story.dialogues[currentChapter].dialogue_to - 1;
         }
-
         else if (story.dialogues[currentChapter].dialogue_to == 0)
         {
             currentChapter += 1;
