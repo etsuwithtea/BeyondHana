@@ -105,7 +105,7 @@ public partial class PlayPage : ContentPage
         {
             StoryPage.currentChapter = Preferences.Get("ChapterProgress", 0);
             await Navigation.PushAsync(new Views.StoryPage());
-        }                    
+        }
     }
 
     // LoadGame button event handlers

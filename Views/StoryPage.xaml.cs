@@ -34,6 +34,7 @@ public partial class StoryPage : ContentPage
 
         if (currentChapter <= story.dialogues.Count - 1)
         {
+
             if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
             {
                 if (currentChapter == 0)
@@ -66,7 +67,6 @@ public partial class StoryPage : ContentPage
                 Background.Source = story.backgrounds[story.events[story.dialogues[currentChapter].event_id - 1].background_id - 1].file_path;
                 TextTitle.Text = story.dialogues[currentChapter].text;
 
-
                 if (story.dialogues[currentChapter].is_narration == 1)
                 {
                     var who = story.characters[story.dialogues[currentChapter].character_id - 1];
@@ -92,7 +92,7 @@ public partial class StoryPage : ContentPage
                     TextChoice2.IsVisible = true;
                     TextChoice2.IsVisible = false;
                 }
-             
+
             }
             else if (story.dialogues[currentChapter].is_choice == 0)
             {
@@ -102,12 +102,12 @@ public partial class StoryPage : ContentPage
                 Background.Source = story.backgrounds[story.events[story.dialogues[currentChapter].event_id - 1].background_id - 1].file_path;
                 TextContent.Text = story.dialogues[currentChapter].text;
 
-                if (story.dialogues[currentChapter].is_narration == 0)
+                if (story.dialogues[currentChapter].is_narration == 1)
                 {
                     Character.IsVisible = false;
-                    WhoSpeak.Source = "subtitle_label.png";
+                    WhoSpeak.IsVisible = false;
                 }
-                if (story.dialogues[currentChapter].is_narration == 1)
+                if (story.dialogues[currentChapter].is_narration == 0)
                 {
                     var who = story.characters[story.dialogues[currentChapter].character_id - 1];
                     Character.Source = who.file_path;
@@ -115,36 +115,66 @@ public partial class StoryPage : ContentPage
                     Character.IsVisible = true;
                     Character.HeightRequest = 400;
 
-                    if (who.name == "Hana")
+                    if (who.name == "hana_normal_1")
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "Akira")
+                    if (who.name == "hana_normal_2")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    if (who.name == "hana_awkward")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    if (who.name == "hana_happy")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    if (who.name == "hana_shy")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    if (who.name == "hana_suspect")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    if (who.name == "akira")
                     {
                         WhoSpeak.Source = "akira_label.png";
                     }
-                    if (who.name == "Sakura")
+                    if (who.name == "sakura_1")
                     {
                         WhoSpeak.Source = "sakura_label.png";
                     }
-                    if (who.name == "Emi")
+                    if (who.name == "sakura_2")
+                    {
+                        WhoSpeak.Source = "sakura_label.png";
+                    }
+                    if (who.name == "emi")
                     {
                         WhoSpeak.Source = "emi_label.png";
                     }
-                    if (who.name == "Genji")
+                    if (who.name == "genji")
                     {
                         WhoSpeak.Source = "genji_label.png";
                     }
+                    if (who.name == "police")
+                    {
+                        WhoSpeak.Source = "police_label.png";
+                    }
+                    if (who.name == "akira mom")
+                    {
+                        WhoSpeak.Source = "akiramom_label";
+                    }
                     WhoSpeak.IsVisible = true;
                 }
-
             }
         }
         else
         {
             await Navigation.PushAsync(new Views.Endpage());
         }
-    
     }
 
     // Next button event handlers
@@ -167,7 +197,18 @@ public partial class StoryPage : ContentPage
 
         await Task.Delay(300);
         // Check if there are more chapters to load
-        LoadStory(currentChapter + 1);
+        var story = App.CombinedVM.Story;
+        if (story.dialogues[currentChapter].dialogue_to != 0)
+        {
+            //Console.WriteLine(story.dialogues[currentChapter].dialogue_to);
+            currentChapter = story.dialogues[currentChapter].dialogue_to - 1;
+        }
+
+        else if (story.dialogues[currentChapter].dialogue_to == 0)
+        {
+            currentChapter += 1;
+        }
+        LoadStory(currentChapter);
     }
 
     // Setting button event handlers

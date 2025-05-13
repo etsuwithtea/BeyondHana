@@ -5,7 +5,7 @@
              Title="StoryPage">
     <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
         <Grid  ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,*,*" RowSpacing="10">
-
+         
             <Image Source="academic_corridor3_blur.png" x:Name="Background" Aspect="AspectFill" Grid.ColumnSpan="5" Grid.RowSpan="5"/>
             <Image Source="hana.png" x:Name="Character" Grid.ColumnSpan="5" Grid.RowSpan="5" HeightRequest="400" VerticalOptions="End"/>
 
@@ -18,7 +18,7 @@
             <Grid x:Name="IsNormalDialogue" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5" RowSpacing="10">
 
                 <!--transparent layer for the background-->
-                <Border BackgroundColor="White" Margin="80,30,80,0" Opacity="0.5" StrokeThickness="0">
+                <Border x:Name="TextBox" BackgroundColor="White" Margin="80,30,80,0" Opacity="0.5" StrokeThickness="0">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10,10,0,0" />
                     </Border.StrokeShape>
