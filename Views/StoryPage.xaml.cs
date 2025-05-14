@@ -52,29 +52,25 @@ public partial class StoryPage : ContentPage
             }
 
 
-            if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
+            int currentEventBgmId = story.events[story.dialogues[currentChapter].event_id - 1].bgm_id;
+            int previousEventBgmId = currentChapter > 0 ? story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id : -1;
+
+            if (currentChapter == 0 || currentEventBgmId != previousEventBgmId)
             {
-                if (currentChapter == 0)
+                string filePath;
+
+                if (currentEventBgmId != 0)
                 {
-                    await App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    filePath = story.bgms[currentEventBgmId - 1].file_path;
                 }
-                else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
+                else
                 {
-                    await App.CombinedVM.BGAudioPlayer.PlayAsync(story.bgms[story.events[story.dialogues[currentChapter].event_id - 1].bgm_id - 1].file_path, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
-                }
-            }
-            else
-            {
-                if (currentChapter == 0)
-                {
-                    App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
-                }
-                else if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id)
-                {
-                    App.CombinedVM.BGAudioPlayer.PlayAsync("soundtrack_wait.wav", App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
+                    filePath = "soundtrack_wait.wav";
                 }
 
+                await App.CombinedVM.BGAudioPlayer.PlayAsync(filePath, App.CombinedVM.UserSetting.SelectedSetting.Backgroundmusicpercent);
             }
+
 
             if (story.dialogues[currentChapter].is_choice == 1)
             {
