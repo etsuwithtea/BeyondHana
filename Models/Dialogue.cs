@@ -12,6 +12,7 @@ namespace BeyondHana.Models
         public string? text { get; set; }
         public int is_narration { get; set; }
         public int is_choice { get; set; }
+        public int is_black_screen { get; set; }
         public int dialogue_to { get; set; }
     }
 }

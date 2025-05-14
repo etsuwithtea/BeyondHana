@@ -5,6 +5,9 @@ public partial class StoryPage : ContentPage
     // current chapter
     public static int currentChapter = 0;
 
+    // is black screen
+    public static int isblackscreen = 0;
+
     // Constructor
     public StoryPage()
 	{
@@ -34,6 +37,20 @@ public partial class StoryPage : ContentPage
 
         if (currentChapter <= story.dialogues.Count - 1)
         {
+            if (story.dialogues[currentChapter].is_black_screen == 1)
+            {
+                isblackscreen = 1;
+            }
+            else if (story.dialogues[currentChapter].is_black_screen == 0)
+            {
+                isblackscreen = 0;
+            }
+
+            if (isblackscreen == 1)
+            {
+                await Navigation.PushAsync(new Views.BlackScreen());
+            }
+
 
             if (story.events[story.dialogues[currentChapter].event_id - 1].bgm_id != 0)
             {
