@@ -132,51 +132,55 @@ public partial class StoryPage : ContentPage
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "hana_normal_2")
+                    else if (who.name == "hana_normal_2")
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "hana_awkward")
+                    else if (who.name == "hana_awkward")
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "hana_happy")
+                    else if (who.name == "hana_happy")
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "hana_shy")
+                    else if (who.name == "hana_sad")
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "hana_suspect")
+                    else if (who.name == "hana_shy")
                     {
                         WhoSpeak.Source = "hana_label.png";
                     }
-                    if (who.name == "akira")
+                    else if (who.name == "hana_suspect")
+                    {
+                        WhoSpeak.Source = "hana_label.png";
+                    }
+                    else if (who.name == "akira")
                     {
                         WhoSpeak.Source = "akira_label.png";
                     }
-                    if (who.name == "sakura_1")
+                    else if (who.name == "sakura_1")
                     {
                         WhoSpeak.Source = "sakura_label.png";
                     }
-                    if (who.name == "sakura_2")
+                    else if (who.name == "sakura_2")
                     {
                         WhoSpeak.Source = "sakura_label.png";
                     }
-                    if (who.name == "emi")
+                    else if (who.name == "emi")
                     {
                         WhoSpeak.Source = "emi_label.png";
                     }
-                    if (who.name == "genji")
+                    else if (who.name == "genji")
                     {
                         WhoSpeak.Source = "genji_label.png";
                     }
-                    if (who.name == "police")
+                    else if (who.name == "police")
                     {
                         WhoSpeak.Source = "police_label.png";
                     }
-                    if (who.name == "akira mom")
+                    else if (who.name == "akira mom")
                     {
                         WhoSpeak.Source = "akiramom_label";
                     }
