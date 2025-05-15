@@ -104,13 +104,6 @@ public partial class StoryPage : ContentPage
                     TextChoice2.IsVisible = true;
                     TextChoice2.IsVisible = true;
                 }
-                else if (story.choices.Where(x => x.dialogue_id == currentChapter + 1).Count() == 1)
-                {
-                    var nextChoices = story.choices.Where(x => x.dialogue_id == currentChapter + 1).ToList();
-                    TextChoice1.Text = nextChoices[0].choice_text;
-                    TextChoice2.IsVisible = true;
-                    TextChoice2.IsVisible = false;
-                }
 
             }
             else if (story.dialogues[currentChapter].is_choice == 0)
