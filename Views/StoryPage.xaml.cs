@@ -51,7 +51,7 @@ public partial class StoryPage : ContentPage
                 await Navigation.PushAsync(new Views.BlackScreen());
             }
 
-
+            // soundtrack
             int currentEventBgmId = story.events[story.dialogues[currentChapter].event_id - 1].bgm_id;
             int previousEventBgmId = currentChapter > 0 ? story.events[story.dialogues[currentChapter - 1].event_id - 1].bgm_id : -1;
 
