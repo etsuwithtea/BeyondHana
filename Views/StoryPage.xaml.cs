@@ -82,12 +82,18 @@ public partial class StoryPage : ContentPage
 
                 if (story.dialogues[currentChapter].is_narration == 1)
                 {
+                    Character.IsVisible = false;
+                    WhoSpeak.IsVisible = false;
+                }
+                if (story.dialogues[currentChapter].is_narration == 0)
+                {
                     var who = story.characters[story.dialogues[currentChapter].character_id - 1];
                     Character.Source = who.file_path;
                     Character.IsVisible = true;
                     Character.HorizontalOptions = LayoutOptions.Start;
                     Character.HeightRequest = 300;
                 }
+
 
                 if (story.choices.Where(x => x.dialogue_id == currentChapter + 1).Count() == 2)
                 {
