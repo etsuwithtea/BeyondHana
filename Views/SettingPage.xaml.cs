@@ -1,0 +1,90 @@
+namespace BeyondHana.Views;
+public partial class SettingPage : ContentPage
+{
+    public SettingPage()
+	{
+		InitializeComponent();
+        BindingContext = App.CombinedVM; // Set the BindingContext to CombinedVM
+
+        BackButton.Pressed += BackButton_Pressed;
+        BackButton.Released += BackButton_Released;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Hide the navigation bar
+        NavigationPage.SetHasNavigationBar(this, false);
+
+        // Get the selected setting
+        var setting = App.CombinedVM.UserSetting.SelectedSetting;
+        if (setting == null) return;
+
+        if (setting.Textsize == 14)
+        {
+            SmallText_CheckBox.Source = "checkbox_2.png";
+            NormalText_CheckBox.Source = "checkbox_1.png";
+        }
+        else if (setting.Textsize == 18)
+        {
+            SmallText_CheckBox.Source = "checkbox_1.png";
+            NormalText_CheckBox.Source = "checkbox_2.png";
+        }
+    }
+
+    // Small and Normal Text Check Button Clicked
+    private async void SmallTextCheckButton_Clicked(object sender, EventArgs e)
+    {
+        // Get the selected setting
+        var setting = App.CombinedVM.UserSetting.SelectedSetting;
+        if (setting == null) return;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
+        // Set the text size to small
+        setting.Textsize = 14;
+        SmallText_CheckBox.Source = "checkbox_2.png";
+        NormalText_CheckBox.Source = "checkbox_1.png";  
+    }
+    private async void NormalTextCheckButton_Clicked(object sender, EventArgs e)
+    {
+        // Get the selected setting
+        var setting = App.CombinedVM.UserSetting.SelectedSetting;
+        if (setting == null) return;
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+
+        // Set the text size to normal
+        setting.Textsize = 18;
+        SmallText_CheckBox.Source = "checkbox_1.png";
+        NormalText_CheckBox.Source = "checkbox_2.png";
+    }
+
+    // Backbutton event handlers
+    private async void BackButton_Pressed(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        button.Source = "back2_label.png";
+        await PlaySoundAsync("buttonclicksound.mp3", App.CombinedVM.UserSetting.SelectedSetting.Soundeffectpercent);
+    }
+    private async void BackButton_Released(object sender, EventArgs e)
+    {
+        // Animation Clicked
+        var button = sender as ImageButton;
+        await button.ScaleTo(0.95, 100);
+        await button.ScaleTo(1, 100);
+        await Task.Delay(100);
+        // Reset the button appearance
+        button.Source = "back1_label.png";
+
+        // Navigate back to the previous page
+        await Navigation.PopAsync();
+    }
+
+    // Sound effect
+    private async Task PlaySoundAsync(string fileName, double volume)
+    {
+        var player = App.CombinedVM.AudioPlayer.PlayAudioAsync(fileName, volume);
+        if (player == null) return;
+    }
+}

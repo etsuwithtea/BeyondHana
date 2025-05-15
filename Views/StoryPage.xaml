@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeyondHana.Views.StoryPage"
+             Title="StoryPage">
+    <FlexLayout Margin="0" Padding="0" JustifyContent="Center">
+        <Grid  ColumnDefinitions="*,*,*,*,*" RowDefinitions="*,*,*,*,*" RowSpacing="10">
+         
+            <Image Source="academic_corridor3_blur.png" x:Name="Background" Aspect="AspectFill" Grid.ColumnSpan="5" Grid.RowSpan="5"/>
+            <Image Source="hana.png" x:Name="Character" Grid.ColumnSpan="5" Grid.RowSpan="5" HeightRequest="400" VerticalOptions="End"/>
+
+            <Grid ColumnDefinitions="*,*,*" Grid.Row="0" Grid.Column="0" ColumnSpacing="1" HorizontalOptions="Center" Margin="10,0,0,0">
+                <ImageButton Source="settingicon_button.png" x:Name="SettingButton" Grid.Column="0" HeightRequest="45" HorizontalOptions="Center" VerticalOptions="Center" Clicked="SettingButton_Clicked"/>
+                <ImageButton Source="saveicon_button.png" x:Name="SaveButton"  Grid.Column="1" HeightRequest="35" HorizontalOptions="Center" VerticalOptions="Center" Clicked="SaveButton_Clicked"/>
+                <ImageButton Source="homeicon_button.png" x:Name="HomeButton"  Grid.Column="2" HeightRequest="45" HorizontalOptions="Center"  VerticalOptions="Center" Clicked="HomeButton_Clicked"/>
+            </Grid>
+
+            <Grid x:Name="IsNormalDialogue" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="5" RowSpacing="10">
+
+                <!--transparent layer for the background-->
+                <Border x:Name="TextBox" BackgroundColor="White" Margin="80,30,80,0" Opacity="0.5" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,0,0" />
+                    </Border.StrokeShape>
+                </Border>
+
+                <!-- no transparent layer for the text-->
+                <Grid Margin="80,30,80,0">
+                    <Grid Margin="45,30,45,15">
+                        <ScrollView Orientation="Vertical">
+                            <Label Text="NoText"
+                                   x:Name="TextContent"
+                                   TextColor="Black"
+                                   FontFamily="ItimRegular"
+                                   LineBreakMode="WordWrap"
+                                   FontAttributes="Bold"
+                                   FontSize="{Binding UserSetting.SelectedSetting.Textsize}"
+                                   Opacity="1.0"/>
+                        </ScrollView>
+                    </Grid>
+                </Grid>
+
+                <!-- layer for the character-->
+                <Image Source="hana_label.png"
+                       x:Name="WhoSpeak"
+                       Grid.ColumnSpan="5"
+                       Grid.RowSpan="6"
+                       HeightRequest="50"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start"
+                       Margin="40,0,0,0"/>
+
+                <!--layer for the next button-->
+                <ImageButton Source="storynext2_button.png"
+                             Grid.Row="4"
+                             Grid.ColumnSpan="5"
+                             HorizontalOptions="End"
+                             VerticalOptions="End"
+                             Margin="0,0,30,0"
+                             HeightRequest="25"
+                             WidthRequest="90"
+                             x:Name="NextButton"/>
+            </Grid>
+
+            <Grid x:Name="IsChoiceDialogue" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="4" RowDefinitions="0.5*,*,*,*,0.5*" Margin="30,0,30,0" RowSpacing="15">
+
+                <!-- Title -->
+                <Grid Grid.Row="1" HeightRequest="90" Margin="10,10,10,10">
+                    <!--transparent layer for the background-->
+                    <Border BackgroundColor="Black" Margin="40,0,80,0" Opacity="0.5" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="15,15,15,15" />
+                        </Border.StrokeShape>
+                    </Border>
+
+                    <!-- transparent layer for the text-->
+                    <Grid Margin="40,0,80,0">
+                        <Grid Margin="30,20,30,20" HorizontalOptions="Center" VerticalOptions="Center">
+                            <ScrollView Orientation="Vertical">
+                                <Label Text="NoText" x:Name="TextTitle" TextColor="White" FontFamily="ItimRegular" LineBreakMode="WordWrap" FontAttributes="Bold" FontSize="20" />
+                            </ScrollView>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <!-- choice 1-->
+                <Grid Grid.Row="2" HeightRequest="85" Margin="10,10,10,10">
+                    <!--transparent layer for the background-->
+                    <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="25,25,25,25"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TextChoice1_Tapped"/>
+                    </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- transparent layer for the text-->
+                    <Grid Margin="40,0,80,0">
+                        <Grid Margin="30">
+                            <ScrollView Orientation="Horizontal"  >
+                                <ScrollView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ScrollViewTextChoice1_Tapped" />
+                                </ScrollView.GestureRecognizers>
+                                <Label Text="Notext" x:Name="TextChoice1" TextColor="Black" FontFamily="ItimRegular"
+                                       LineBreakMode="WordWrap" FontAttributes="Bold"
+                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" />
+                            </ScrollView>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <!-- choice 2-->
+                <Grid Grid.Row="3" HeightRequest="85" Margin="10,10,10,10" >
+                    <!--transparent layer for the background-->
+                    <Border BackgroundColor="White" Margin="40,5,80,5" Opacity="0.7" StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="25,25,25,25" />
+                        </Border.StrokeShape>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TextChoice2_Tapped"/>
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- transparent layer for the text-->
+                    <Grid Margin="40,0,80,0">
+                        <Grid Padding="30" >
+                            <ScrollView Orientation="Horizontal">
+                                <ScrollView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ScrollViewTextChoice2_Tapped" />
+                                </ScrollView.GestureRecognizers>
+                                <Label Text="NoText" x:Name="TextChoice2" TextColor="Black" FontFamily="ItimRegular"
+                                       LineBreakMode="WordWrap" FontAttributes="Bold"
+                                       FontSize="{Binding UserSetting.SelectedSetting.Textsize}" />
+                            </ScrollView>
+                        </Grid>
+                    </Grid>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TextChoice2_Tapped"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </FlexLayout>
+</ContentPage>
