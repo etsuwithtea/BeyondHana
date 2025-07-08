@@ -17,8 +17,8 @@
 ## 👥 ทีมผู้สร้าง
 
 - ✍️ **Story** โดย [Cariel](https://github.com/Cariel22) — ผู้รังสรรค์เรื่องราวและบทสนทนา
-- 🎮 **Gameplay** โดย [Beconet](https://github.com/Beconet) — ผู้ออกแบบรูปแบบการเล่นและประสบการณ์ในเกม
-- 💻 **Programming** โดย [etsuwithtea](https://github.com/etsuwithtea) — ผู้พัฒนาและดูแลโค้ดของโปรเจกต์นี้
+- 🎮 **Gameplay & Music Design** โดย [Beconet](https://github.com/Beconet) — ผู้ออกแบบรูปแบบการเล่น ประสบการณ์ในเกม และดนตรี
+- 💻 **Programming & App Design** โดย [etsuwithtea](https://github.com/etsuwithtea) — ผู้พัฒนาโค้ด ออกแบบแอปพลิเคชัน และดูแลโปรเจกต์นี้
 
 ---
 
