@@ -1,34 +1,47 @@
 # 🌸 BeyondHana
 
-**BeyondHana** คือเกม Visual Novel ที่พัฒนาด้วย .NET MAUI เพื่อให้ทุกคนได้สัมผัสประสบการณ์การเล่าเรื่องแบบอินเตอร์แอคทีฟผ่านภาษาไทย พร้อมอินเตอร์เฟสภาษาอังกฤษ
+**BeyondHana** คือเกม Visual Novel ที่พัฒนาด้วย .NET MAUI เพื่อให้ทุกคนได้สัมผัสประสบการณ์กา[...]
 
-โปรเจกต์นี้เกิดจากความตั้งใจของทีมงานเล็ก ๆ ที่อยากสร้างสรรค์เกมเนื้อเรื่องภาษาไทยที่เข้าถึงได้ง่ายบนแพลตฟอร์มสมัยใหม่
+โปรเจกต์นี้เกิดจากความตั้งใจของทีมงานเล็ก ๆ ที่อยากสร้างสรรค์เกมเนื[...]
 
 ---
 
 ## 💡 เกี่ยวกับโปรเจกต์
 
-- 🚀 สร้างด้วย **.NET MAUI** (บน .NET 9) ทำให้ตัวเกมมีศักยภาพในการพัฒนาให้สามารถเล่นได้บนหลายระบบปฏิบัติการ (ขณะนี้รองรับ Android)
-- 🌐 **อินเตอร์เฟสของเกมเป็นภาษาอังกฤษ** แต่ **เนื้อเรื่องทั้งหมดเป็นภาษาไทย**
-- 📖 ตัวเกมนำเสนอเรื่องราวผ่านภาพและข้อความ พร้อมระบบตัวเลือกที่นำไปสู่เส้นทางเนื้อเรื่องที่แตกต่างกัน
+- 🚀 สร้างด้วย **.NET MAUI** (บน .NET 9) ทำให้ตัวเกมมีศักยภาพในการพัฒนาให้สามารถเล่น��
+- 🌐 **อินเตอร์เฟสของเกมเป็นภาษาอังกฤษ** แต่ **เนื้อเรื่องทั้งหมดเป็นภาษา�
+- 📖 ตัวเกมนำเสนอเรื่องราวผ่านภาพและข้อความ พร้อมระบบตัวเลือกที่นำไป��
 
 ---
 
 ## 👥 ทีมผู้สร้าง
 
 - ✍️ **Story** โดย [Cariel](https://github.com/Cariel22) — ผู้รังสรรค์เรื่องราวและบทสนทนา  
-- 🎮 **Gameplay & Music Design** โดย [Beconet](https://github.com/Beconet) — ผู้ออกแบบรูปแบบการเล่น ประสบการณ์ในเกม และดนตรี  
-- 💻🎨 **Programming & App Design** โดย [etsuwithtea](https://github.com/etsuwithtea) — ผู้พัฒนา ดูแลโค้ด และออกแบบแอปพลิเคชัน  
+- 🎮 **Gameplay & Music Design** โดย [Beconet](https://github.com/Beconet) — ผู้ออกแบบรูปแบบการเล่น ประสบการณ์ในเก[...]
+- 💻🎨 **Programming & App Design** โดย [etsuwithtea](https://github.com/etsuwithtea) — ผู้พัฒนา ดูแลโค้ด และออกแบบแอปพลิ�[...]
 
 ---
 
 ## ✨ ฟีเจอร์เด่น
 
-- 📝 อินเตอร์เฟสเป็นภาษาอังกฤษ เพื่อความเข้าใจง่ายสำหรับกลุ่มผู้เล่นนานาชาติ
+- 📝 อินเตอร์เฟสเป็นภาษาอังกฤษ เพื่อความเข้าใจง่ายสำหรับกลุ่มผู้เล่น��
 - 🇹🇭 เนื้อเรื่องและบทสนทนาในเกมเป็นภาษาไทยทั้งหมด
 - 🔀 ระบบตัวเลือก (Choice) ที่ส่งผลต่อเนื้อเรื่องและตอนจบ
 - 🖼️ ภาพประกอบและ UI ที่ออกแบบมาเพื่อประสบการณ์ Visual Novel
 - 📱 ศักยภาพในการขยายไปสู่หลายแพลตฟอร์ม แต่ปัจจุบันเปิดให้เล่นบน Android
+
+---
+
+## 🖼️ ภาพตัวอย่างเกม
+
+![beyondhana_1](screenshots/beyondhana_1.png)
+![beyondhana_2](screenshots/beyondhana_2.png)
+![beyondhana_3](screenshots/beyondhana_3.png)
+![beyondhana_4](screenshots/beyondhana_4.png)
+![beyondhana_5](screenshots/beyondhana_5.png)
+![beyondhana_6](screenshots/beyondhana_6.png)
+![beyondhana_7](screenshots/beyondhana_7.png)
+![beyondhana_8](screenshots/beyondhana_8.png)
 
 ---
 
@@ -50,7 +63,7 @@
 
 ## ⚠️ หมายเหตุ
 
-- โปรเจกต์นี้ยังอยู่ในระหว่างการพัฒนา อาจมีการเปลี่ยนแปลงเนื้อหาและฟีเจอร์ต่าง ๆ ได้ตลอดเวลา  
+- โปรเจกต์นี้ยังอยู่ในระหว่างการพัฒนา อาจมีการเปลี่ยนแปลงเนื้อหาและ�
 - หากพบปัญหาหรือมีข้อเสนอแนะ สามารถแจ้งผ่าน Issue ใน GitHub Repository นี้ได้เลย  
 
 ---
@@ -90,6 +103,19 @@ This project was created by a small team aiming to craft a Thai-language story-d
 - 🔀 Choice system affecting story progression and endings
 - 🖼️ Custom illustrations and UI for an immersive visual novel experience
 - 📱 Potential for cross-platform deployment, currently available on Android
+
+---
+
+## 🖼️ Game Screenshots
+
+![beyondhana_1](screenshots/beyondhana_1.png)
+![beyondhana_2](screenshots/beyondhana_2.png)
+![beyondhana_3](screenshots/beyondhana_3.png)
+![beyondhana_4](screenshots/beyondhana_4.png)
+![beyondhana_5](screenshots/beyondhana_5.png)
+![beyondhana_6](screenshots/beyondhana_6.png)
+![beyondhana_7](screenshots/beyondhana_7.png)
+![beyondhana_8](screenshots/beyondhana_8.png)
 
 ---
 
