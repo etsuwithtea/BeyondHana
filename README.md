@@ -16,7 +16,7 @@
 
 ## 👥 ทีมผู้สร้าง
 
-- ✍️ **เนื้อเรื่อง** โดย [Cariel](https://github.com/Cariel22) — เขียนเรื่องราวและบทสนทนา  
+- ✍️ **เนื้อเรื่อง** โดย [Cariel](https://github.com/Cariel22)/[Kurimuel](https://github.com/Kurimuel) — เขียนเรื่องราวและบทสนทนา  
 - 🎮 **ออกแบบเกม & ดนตรี & Database** โดย [Beconet](https://github.com/Beconet) — ดูแลระบบการเล่นและสร้างสรรค์ประสบการณ์เสียง  
 - 💻🎨 **โปรแกรมมิ่ง & ดีไซน์แอป** โดย [etsuwithtea](https://github.com/etsuwithtea) — พัฒนา ดูแลโค้ด และออกแบบแอปพลิเคชัน  
 
